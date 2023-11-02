@@ -1,0 +1,9 @@
+.private__layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafaff;
+  & .main {
+    flex-grow: 1;
+  }
+}
