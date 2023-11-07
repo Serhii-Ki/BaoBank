@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// eslint-disable-next-line no-unused-vars
+import appStyle from "../scss/app.scss";
+
 //Layouts
 import ErrorLayout from "./layout/ErrorLayout";
 import PrivateLayout from "./layout/PrivateLayout";
@@ -15,9 +18,9 @@ import GiveGifts from "./pages/private/giveGifts/GiveGifts";
 import PhoneBook from "./pages/private/phoneBook/PhoneBook";
 import Deposit from "./pages/private/deposit/Deposit";
 import ErrorPage from "./pages/errors/ErrorPage";
+import Npay from "./pages/public/npay/Npay";
 
-// eslint-disable-next-line no-unused-vars
-import appStyle from "../scss/app.scss";
+
 
 function App() {
   const publicPages = [
@@ -32,6 +35,10 @@ function App() {
     {
       element: <OnBoarding />,
       path: '/onboarding'
+    },
+    {
+      element: <Npay />,
+      path: '/npay'
     },
     {
       element: <PhoneBook />,
