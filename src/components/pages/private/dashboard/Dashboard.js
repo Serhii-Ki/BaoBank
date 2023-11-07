@@ -1,124 +1,206 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
-import { showUserBalance } from "../../../../store/actions/actions";
+import { Box, Grid, IconButton, Link, Typography } from "@mui/material";
+import React, { useState } from "react";
+import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
+import PriceCheckOutlinedIcon from "@mui/icons-material/PriceCheckOutlined";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
+import RedeemOutlinedIcon from "@mui/icons-material/RedeemOutlined";
+import BookOnlineOutlinedIcon from "@mui/icons-material/BookOnlineOutlined";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+import WaterDropIcon from "@mui/icons-material/WaterDrop";
+import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
+import BalanceDisplay from "./DashboardComponents/BalanceDisplay";
+import ModalWindow from "../../../designComponents/ModalWindow";
 
-import SliderDashboard from './SliderDashboard';
+const DashBoard = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [balance, setBalance] = useState(40000);
+  const [showBalance, setShowBalance] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const toggleVisibility = () => {
+    setShowBalance(!showBalance);
+  };
 
-//Icons
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import PublishIcon from '@mui/icons-material/Publish';
-import QrCode2Icon from '@mui/icons-material/QrCode2';
-import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
-import PriceCheckOutlinedIcon from '@mui/icons-material/PriceCheckOutlined';
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
-import FastfoodOutlinedIcon from '@mui/icons-material/FastfoodOutlined';
-import RedeemOutlinedIcon from '@mui/icons-material/RedeemOutlined';
-import BookOnlineOutlinedIcon from '@mui/icons-material/BookOnlineOutlined';
-import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+  const listServices = [
+    {
+      element: <SyncAltOutlinedIcon sx={{ fontSize: "2rem" }} />,
+      text: "Transfer",
+      link: "/transfer",
+    },
+    {
+      element: <PriceCheckOutlinedIcon sx={{ fontSize: "2rem" }} />,
+      text: "Request money transfer",
+      link: "/reqtransfer",
+    },
+    {
+      element: <PeopleOutlinedIcon sx={{ fontSize: "2rem" }} />,
+      text: "Manage group of friends",
+      link: "/managegroup",
+    },
+    {
+      element: <FastfoodOutlinedIcon sx={{ fontSize: "2rem" }} />,
+      text: "Order food online",
+      link: "/fastfood",
+    },
+    {
+      element: <RedeemOutlinedIcon sx={{ fontSize: "2rem" }} />,
+      text: "Give gifts",
+      link: "/gifts",
+    },
+    {
+      element: <BookOnlineOutlinedIcon sx={{ fontSize: "2rem" }} />,
+      text: "Pay bills",
+      link: "/paybills",
+    },
+    {
+      element: <ConfirmationNumberIcon sx={{ fontSize: "2rem" }} />,
+      text: "Buy movie tickets",
+      link: "/buy",
+    },
+    {
+      element: <MonetizationOnIcon sx={{ fontSize: "2rem" }} />,
+      text: "Consumer loans",
+      link: "/consumer",
+    },
+    {
+      element: <ElectricBoltIcon sx={{ fontSize: "2rem" }} />,
+      text: "Electricity payment",
+      link: null,
+      hidden: !isExpanded,
+    },
+    {
+      element: <WaterDropIcon sx={{ fontSize: "2rem" }} />,
+      text: "Water payment",
+      link: null,
+      hidden: !isExpanded,
+    },
+    {
+      element: <AirplanemodeActiveIcon sx={{ fontSize: "2rem" }} />,
+      text: "Airfare",
+      link: null,
+      hidden: !isExpanded,
+    },
+    {
+      element: <MoreHorizIcon sx={{ fontSize: "2rem" }} />,
+      text: "All Services",
+      link: null,
+    },
+  ].filter((item) => !item.hidden);
 
-import "./dashboard.scss";
+  const openModalHandler = () => {
+    setOpenModal(true);
+  };
 
-function Dashboard({props}) {
-    const dispatch = useDispatch();
-    const balanceShow = useSelector(state => state.dashboard.showBalance);
+  const closeModalHandler = () => {
+    setOpenModal(false);
+  };
+  return (
+    <>
+      <BalanceDisplay
+        balance={balance}
+        showBalance={showBalance}
+        toggleVisibility={toggleVisibility}
+      />
+      <Grid
+        container
+        spacing={2}
+        justifyContent="center"
+        style={{ padding: "16px" }}
+      >
+        {listServices.map((item, index) => (
+          <Grid
+            key={index}
+            item
+            xs={4}
+            sm={3}
+            md={2}
+            container
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Box
+              sx={{
+                width: "100%",
+                height: "120px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "12px",
+                borderRadius: "8px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                backgroundColor: "#ffffff",
+              }}
+            >
+              {item.link === null ? (
+                <Link
+                  href={item.link}
+                  underline="none"
+                  sx={{
+                    justifyContent: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    color: "#272643",
+                  }}
+                >
+                  {" "}
+                  <IconButton
+                    // onClick={() => setIsExpanded(!isExpanded)}
+                    onClick={openModalHandler}
+                    sx={{ color: "#272643", fontSize: "2rem" }}
+                    color="primary"
+                  >
+                    {item.element}
+                  </IconButton>
+                  <Typography variant="body2" align="center">
+                    {item.text}
+                  </Typography>
+                </Link>
+              ) : (
+                <Link
+                  href={item.link}
+                  underline="none"
+                  sx={{
+                    justifyContent: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    color: "#272643",
+                  }}
+                >
+                  {" "}
+                  <IconButton
+                    sx={{ color: "#272643", fontSize: "2rem" }}
+                    color="primary"
+                  >
+                    {item.element}
+                  </IconButton>
+                  <Typography variant="body2" align="center">
+                    {item.text}
+                  </Typography>
+                </Link>
+              )}
+            </Box>
+          </Grid>
+        ))}
+        {openModal && (
+          <ModalWindow
+            open={openModal}
+            onClose={closeModalHandler}
+            secondText={'secondText'}
+            mainText={"mainText"}
+            firstBtnText={"Yes"}
+            secondBtnText={"No"}
+            firstBtnClick={closeModalHandler}
+            secondBtnClick={closeModalHandler}
+            title="Your Modal Title"
+          />
+        )}
+      </Grid>
+    </>
+  );
+};
 
-    const listServices = [
-        {
-            element: <SyncAltOutlinedIcon />,
-            text: 'Transfer',
-            color: 'black',
-            link: '/transfer'
-        },
-        {
-            element: <PriceCheckOutlinedIcon />,
-            text: 'Request money transfer',
-            color: '#bae8e8',
-            link: '/reqtransfer'
-        },
-        {
-            element: <PeopleOutlinedIcon />,
-            text: 'Manage group of friends',
-            color: '#4884fe',
-            link: '/managegroup'
-        },
-        {
-            element: <FastfoodOutlinedIcon />,
-            text: 'Order food online',
-            color: '#fda401',
-            link: '/fastfood'
-        },
-        {
-            element: <RedeemOutlinedIcon />,
-            text: 'Give gifts',
-            color: '#fe6759',
-            link: '/gifts'
-        },
-        {
-            element: <BookOnlineOutlinedIcon />,
-            text: 'Pay bills',
-            color: '#00b4fe',
-            link: '/paybills'
-        },
-        {
-            element: <ConfirmationNumberIcon />,
-            text: 'Buy movie tickets',
-            color: '#fe685a',
-            link: '/buy'
-        },
-        {
-            element: <MonetizationOnIcon />,
-            text: 'Consumer loans',
-            color: '#fda401',
-            link: '/consumer'
-        },
-        {
-            element: <MoreHorizIcon />,
-            text: 'All Services',
-            color: '#0077fd',
-            link: null
-        }
-    ];
-
-    const onChangeShowBalance = () => {
-        dispatch(showUserBalance());
-    };
-
-    return (
-        <div className='dashboard'>
-            <div className="dashboard__top">
-                <ul className="dashboard__top-list">
-                    <li><Link className='dashboard__top-link' to='!#'><AccountBalanceWalletIcon className='link-wallet' /><p>Deposit</p></Link></li>
-                    <li><Link className='dashboard__top-link' to='!#'><PublishIcon className='link-arrow' /><p>Withdrawal</p></Link></li>
-                    <li><Link className='dashboard__top-link' to='!#'><QrCode2Icon className='link-qr' /><p>Pay Code</p></Link></li>
-                    <li><Link className='dashboard__top-link' to='!#'><DocumentScannerIcon className='link-scan' /><p>Scan Code</p></Link></li>
-                </ul>
-                <div className="dashboard__top-balance">
-                    <div className="balance__left">
-                        <p>Balance in wallet</p>
-                        <button onClick={() => onChangeShowBalance()}>{balanceShow ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}</button>
-                    </div>
-                    <p className='money'>{balanceShow ? '$45.000' : '$*****'}</p>
-                </div>
-            </div>
-            <div className="dashboard__main">
-                {listServices.map((item, i) => (
-                    <Link key={i} className='dashboard__main-link' to={item.link}>
-                        {React.cloneElement(item.element, { style: { fill: item.color } })}
-                        <p>{item.text}</p>
-                    </Link>
-                ))}
-            </div>
-            <div className="slider">
-                <SliderDashboard />
-            </div>
-        </div>
-    );
-}
-
-export default Dashboard;
+export default DashBoard;

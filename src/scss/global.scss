@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 /* Reset and base styles  */
 * {
   padding: 0px;
@@ -13,7 +14,8 @@
 
 html,
 body {
-  height: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
 }
 
 /* Links */
@@ -27,7 +29,7 @@ a:visited {
 
 a:hover {
   text-decoration: none;
-  color: inherit;
+  color: rgb(36, 47, 167);
 }
 
 /* Common */
@@ -116,4 +118,36 @@ label {
 
 legend {
   display: block;
+}
+
+.subtitle {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.main-input {
+  text-align: center;
+  display: block;
+  padding: 5px;
+  font-size: 22px;
+  width: 70%;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border: 1px solid $main;
+  }
+}
+
+.text {
+  color: #a3a2bb;
 }
