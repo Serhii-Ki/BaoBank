@@ -24,7 +24,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 import "./dashboard.scss";
 
-function Dashboard() {
+function Dashboard({ props }) {
     const dispatch = useDispatch();
     const balanceShow = useSelector(state => state.dashboard.showBalance);
 
