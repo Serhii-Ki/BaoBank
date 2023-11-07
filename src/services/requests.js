@@ -6,6 +6,7 @@ const useService = () => {
     const apiBase = 'http://49.13.31.246:9191/';
     const routes = {
         signup: 'signup',
+        signin: 'signin'
     };
 
     //Регистрация
@@ -18,7 +19,20 @@ const useService = () => {
         return res;
     };
 
-    return { POST_REG_USER };
+    //Логин
+    const POST_LOGIN_USER = async (data) => {
+        const res = await request(
+            `${apiBase}${routes.signin}`,
+            'POST',
+            JSON.stringify(data)
+        );
+        return res;
+    };
+
+    return {
+        POST_REG_USER,
+        POST_LOGIN_USER
+    };
 }
 
 export default useService;

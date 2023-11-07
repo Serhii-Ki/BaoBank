@@ -1,0 +1,12 @@
+.npay {
+  position: relative;
+  padding: 50px 30px;
+  &__link {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    &-img {
+      font-size: 26px;
+    }
+  }
+}
