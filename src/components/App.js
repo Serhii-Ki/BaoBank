@@ -19,14 +19,10 @@ import Deposit from "./pages/private/deposit/Deposit";
 import ErrorPage from "./pages/errors/ErrorPage";
 import Npay from "./pages/public/npay/Npay";
 
-<<<<<<< HEAD
-import DashBoard2 from "./pages/private/dashboard/DashBoard2";
-=======
 
 // eslint-disable-next-line no-unused-vars
 import appStyle from "../scss/app.scss";
 import DashBoard from "./pages/private/dashboard/DashBoard";
->>>>>>> 2877d647cddf38ba68b88c1a1044e3379aa93f45
 
 function App() {
   const publicPages = [
