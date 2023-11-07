@@ -7,6 +7,7 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
 
 import "./header.scss";
+import { useState } from 'react';
 
 function HeaderPrivate() {
     const Search = styled('div')(({ theme }) => ({

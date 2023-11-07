@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // eslint-disable-next-line no-unused-vars
-import appStyle from "../scss/app.scss";
+
 
 //Layouts
 import ErrorLayout from "./layout/ErrorLayout";
@@ -9,7 +9,6 @@ import PrivateLayout from "./layout/PrivateLayout";
 import PublicLayout from "./layout/PublicLayout";
 
 //View
-import Dashboard from "./pages/private/dashboard/Dashboard";
 import SignIn from "./pages/public/signIn/SignIn";
 import SignUP from "./pages/public/signUp/SignUp";
 import Profile from "./pages/private/profile/Profile";
@@ -20,7 +19,14 @@ import Deposit from "./pages/private/deposit/Deposit";
 import ErrorPage from "./pages/errors/ErrorPage";
 import Npay from "./pages/public/npay/Npay";
 
+<<<<<<< HEAD
 import DashBoard2 from "./pages/private/dashboard/DashBoard2";
+=======
+
+// eslint-disable-next-line no-unused-vars
+import appStyle from "../scss/app.scss";
+import DashBoard from "./pages/private/dashboard/DashBoard";
+>>>>>>> 2877d647cddf38ba68b88c1a1044e3379aa93f45
 
 function App() {
   const publicPages = [
@@ -52,7 +58,7 @@ function App() {
 
   const PrivatePages = [
     {
-      element: <DashBoard2 />,
+      element: <DashBoard />,
       path: '/'
     },
     {
