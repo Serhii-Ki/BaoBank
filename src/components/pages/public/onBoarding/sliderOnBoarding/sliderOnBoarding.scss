@@ -1,0 +1,13 @@
+.carousel .control-dots {
+  bottom: -15px;
+}
+.carousel .control-dots .dot {
+  width: 10px;
+  height: 10px;
+  background: #bae8e8;
+}
+.carousel .control-dots .dot.selected {
+  width: 15px;
+  height: 15px;
+  background: #272643;
+}

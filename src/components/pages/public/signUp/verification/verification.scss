@@ -1,0 +1,39 @@
+.verification {
+  &__title {
+    margin-top: 120px;
+  }
+  &__text {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  &__input-container {
+    margin-top: 40px;
+    text-align: center;
+  }
+  &__input {
+    width: 50px;
+    display: inline-block;
+  }
+  &__input:not(:last-child) {
+    margin-right: 10px;
+  }
+  &__btn {
+    margin-top: 50px;
+    text-align: right;
+    padding-right: 50px;
+  }
+  &__link {
+    margin-top: 50px;
+    text-align: center;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  &__error {
+    margin-top: 20px;
+    text-align: center;
+    color: red;
+  }
+}
