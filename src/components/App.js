@@ -20,9 +20,6 @@ import Deposit from "./pages/private/deposit/Deposit";
 import ErrorPage from "./pages/errors/ErrorPage";
 import Npay from "./pages/public/npay/Npay";
 
-
-// eslint-disable-next-line no-unused-vars
-import appStyle from "../scss/app.scss";
 import DashBoard2 from "./pages/private/dashboard/DashBoard2";
 
 function App() {
