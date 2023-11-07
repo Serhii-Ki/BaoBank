@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // eslint-disable-next-line no-unused-vars
-import appStyle from "../scss/app.scss";
+
 
 //Layouts
 import ErrorLayout from "./layout/ErrorLayout";
@@ -22,7 +22,7 @@ import Npay from "./pages/public/npay/Npay";
 
 // eslint-disable-next-line no-unused-vars
 import appStyle from "../scss/app.scss";
-import DashBoard2 from "./pages/private/dashboard/DashBoard2";
+import DashBoard from "./pages/private/dashboard/DashBoard";
 
 function App() {
   const publicPages = [
@@ -54,7 +54,7 @@ function App() {
 
   const PrivatePages = [
     {
-      element: <DashBoard2 />,
+      element: <DashBoard />,
       path: '/'
     },
     {
