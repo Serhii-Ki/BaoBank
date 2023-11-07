@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import useService from "../../../../services/requests";
 import { TextField } from "@mui/material";
-import PrimaryBtn from "../../../designComponents/PrimaryBtn";
+import CustomBtn from "../../../designComponents/CustomBtn";
 import SendIcon from "@mui/icons-material/Send";
 import InputCustom from "../../../designComponents/InputCustom";
 
@@ -62,8 +62,8 @@ function SignUP(props) {
             handleDataChange(e, setConfirmPassword);
           }}
         />
-        <PrimaryBtn disabled={true} text="Submit" onClick={handleSubmit} icon={<SendIcon />} />
-        <PrimaryBtn text="Submit" onClick={handleSubmit} />
+        <CustomBtn disabled={true} text="Submit" onClick={handleSubmit} icon={<SendIcon />} />
+        <CustomBtn text="Submit" onClick={handleSubmit} />
       </form>
     </div>
   );

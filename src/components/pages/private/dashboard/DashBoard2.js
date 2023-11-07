@@ -13,12 +13,13 @@ import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import BalanceDisplay from "./DashboardComponents/BalanceDisplay";
+import ModalWindow from "../../../designComponents/ModalWindow";
 
 const DashBoard2 = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [balance, setBalance] = useState(40000);
   const [showBalance, setShowBalance] = useState(true);
-
+  const [openModal, setOpenModal] = useState(false);
   const toggleVisibility = () => {
     setShowBalance(!showBalance);
   };
@@ -88,9 +89,16 @@ const DashBoard2 = () => {
       link: null,
     },
   ].filter((item) => !item.hidden);
+
+  const openModalHandler = () => {
+    setOpenModal(true);
+  };
+
+  const closeModalHandler = () => {
+    setOpenModal(false);
+  };
   return (
     <>
-      {" "}
       <BalanceDisplay
         balance={balance}
         showBalance={showBalance}
@@ -140,7 +148,8 @@ const DashBoard2 = () => {
                 >
                   {" "}
                   <IconButton
-                    onClick={() => setIsExpanded(!isExpanded)}
+                    // onClick={() => setIsExpanded(!isExpanded)}
+                    onClick={openModalHandler}
                     sx={{ color: "#272643", fontSize: "2rem" }}
                     color="primary"
                   >
@@ -176,6 +185,19 @@ const DashBoard2 = () => {
             </Box>
           </Grid>
         ))}
+        {openModal && (
+          <ModalWindow
+            open={openModal}
+            onClose={closeModalHandler}
+            secondText={'secondText'}
+            mainText={"mainText"}
+            firstBtnText={"Yes"}
+            secondBtnText={"No"}
+            firstBtnClick={closeModalHandler}
+            secondBtnClick={closeModalHandler}
+            title="Your Modal Title"
+          />
+        )}
       </Grid>
     </>
   );

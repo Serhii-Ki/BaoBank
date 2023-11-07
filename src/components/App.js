@@ -6,7 +6,6 @@ import PrivateLayout from "./layout/PrivateLayout";
 import PublicLayout from "./layout/PublicLayout";
 
 //View
-import Dashboard from "./pages/private/dashboard/Dashboard";
 import SignIn from "./pages/public/signIn/SignIn";
 import SignUP from "./pages/public/signUp/SignUp";
 import Profile from "./pages/private/profile/Profile";

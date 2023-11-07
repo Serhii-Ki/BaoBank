@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, IconButton, Box } from "@mui/material";
+import { Grid, Typography, IconButton, Box, Link } from "@mui/material";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import PaymentIcon from "@mui/icons-material/Payment";
@@ -49,8 +49,21 @@ export default function WalletComponent({
                 direction="column"
                 alignItems="center"
               >
-                <AccountBalanceWalletIcon />
-                <Typography variant="caption">Deposit</Typography>
+                <Link
+                  href="/deposit"
+                  underline="none"
+                  sx={{
+                    justifyContent: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    color: "#272643",
+                  }}
+                >
+                  <IconButton>
+                    <AccountBalanceWalletIcon />
+                  </IconButton>
+                  <Typography variant="caption">Deposit</Typography>
+                </Link>
               </Grid>
               <Grid
                 item
@@ -59,8 +72,22 @@ export default function WalletComponent({
                 direction="column"
                 alignItems="center"
               >
-                <ArrowUpwardIcon />
-                <Typography variant="caption">Withdrawal</Typography>
+                <Link
+                  href="/withdrawal"
+                  underline="none"
+                  sx={{
+                    justifyContent: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    color: "#272643",
+                  }}
+                >
+                  <IconButton>
+                    {" "}
+                    <ArrowUpwardIcon />
+                  </IconButton>
+                  <Typography variant="caption">Withdrawal</Typography>
+                </Link>
               </Grid>
               <Grid
                 item
@@ -69,8 +96,23 @@ export default function WalletComponent({
                 direction="column"
                 alignItems="center"
               >
-                <QrCodeScannerIcon />
-                <Typography variant="caption">Scan Code</Typography>
+                <Link
+                  href="/scan-code"
+                  underline="none"
+                  sx={{
+                    justifyContent: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    color: "#272643",
+                  }}
+                >
+                  {" "}
+                  <IconButton>
+                    {" "}
+                    <QrCodeScannerIcon />
+                  </IconButton>
+                  <Typography variant="caption">Scan Code</Typography>
+                </Link>
               </Grid>
             </Grid>
           )}
@@ -94,7 +136,7 @@ export default function WalletComponent({
             >
               {!showBalance ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </IconButton>
-            <Typography variant="h6" component="span">
+            <Typography variant="h5" component="span">
               {showBalance ? ` $${balance.toLocaleString()}` : "$******"}
             </Typography>
           </Grid>
