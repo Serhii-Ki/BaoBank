@@ -2,9 +2,11 @@ import { Outlet } from "react-router-dom";
 
 function PublicLayout() {
     return (
-        <main>
-            <Outlet />
-        </main>
+        <div className="public__wrapper">
+            <main className="public__main">
+                <Outlet />
+            </main>
+        </div>
     );
 }
 

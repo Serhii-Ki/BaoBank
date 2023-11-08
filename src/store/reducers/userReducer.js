@@ -13,7 +13,8 @@ const initialState = {
         verificationCodeUser: '',
         verificationCode: '111111',
         isVerification: false,
-        isUserRegistration: false
+        isUserRegistration: false,
+        isLoginIncorrect: false
     },
 };
 
@@ -146,6 +147,14 @@ const userReducer = (state = initialState, actions) => {
                 userDataForRegistration: {
                     ...state.userDataForRegistration,
                     isUserRegistration: true
+                }
+            };
+        case 'USER_NOT_SIGNIN':
+            return {
+                ...state,
+                userDataForRegistration: {
+                    ...state.userDataForRegistration,
+                    isLoginIncorrect: true
                 }
             };
         default:
