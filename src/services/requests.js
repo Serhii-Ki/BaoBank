@@ -71,7 +71,11 @@ const useService = () => {
         const res = await request(
             `${apiBase}${routes.transaction}`,
             'POST',
-            JSON.stringify(dataTransaction)
+            JSON.stringify(dataTransaction),
+            {
+                "content-type": "application/json",
+                'x-access-token': token
+            }
         );
         return res;
     };
