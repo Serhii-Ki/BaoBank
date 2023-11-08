@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px 40px 10px;
+  background-color: #272643;
+  color: white;
+  &__icons {
+    display: flex;
+    column-gap: 20px;
+  }
+  &__icon {
+    cursor: pointer;
+  }
+}

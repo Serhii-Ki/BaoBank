@@ -1,0 +1,65 @@
+.signup__email {
+  &-title {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &-text {
+    width: 90%;
+    margin: 20px auto 0 auto;
+    text-align: center;
+  }
+  &-error {
+    margin-top: 20px;
+    text-align: center;
+    color: red;
+  }
+  &-agree {
+    display: flex;
+    margin-top: 20px;
+    margin-right: 20px;
+    justify-content: center;
+    column-gap: 15px;
+    align-items: center;
+    & .signup__link-npay {
+      color: blue;
+      text-decoration: underline;
+    }
+  }
+  & .signup__input {
+    margin-top: 20px;
+  }
+}
+
+.signup__btn {
+  margin: 30px 80px 0 0;
+  text-align: right;
+}
+.signup__checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #272643;
+  border-radius: 100%;
+  outline: none;
+  cursor: pointer;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  &-input {
+    width: 70%;
+  }
+}
+
+.signup__checkbox:checked {
+  background-color: #272643;
+  border: 2px solid #272643;
+}
+.signup__link {
+  margin-top: 30px;
+  text-align: center;
+  display: block;
+  font-weight: 600;
+}

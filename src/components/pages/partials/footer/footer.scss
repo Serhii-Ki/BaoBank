@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  & .footer__img {
+    height: 30px;
+    opacity: 0.5;
+  }
+  & .footer__img-active {
+    opacity: 1;
+  }
+}
