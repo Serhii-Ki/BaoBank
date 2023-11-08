@@ -48,13 +48,17 @@ export const enterVerificationCode = (data) => ({
     code: data
 });
 export const successVerificationCode = () => ({
-    type: 'SUCCESS_VERIFICATION_CODE',
+    type: 'SUCCESS_VERIFICATION_CODE'
 });
 export const notSuccessVerificationCode = () => ({
-    type: 'NOT_SUCCESS_VERIFICATION_CODE',
+    type: 'NOT_SUCCESS_VERIFICATION_CODE'
 });
 export const userNotRegistration = () => ({
-    type: 'USER_NOT_REGISTRATION',
+    type: 'USER_NOT_REGISTRATION'
+});
+//SIGNIN
+export const userNotSignin = () => ({
+    type: 'USER_NOT_SIGNIN'
 });
 
 //Dashboard actions
