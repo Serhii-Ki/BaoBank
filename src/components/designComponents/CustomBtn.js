@@ -1,5 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 
 const customBtnStyles = {
   primary: {
@@ -19,12 +19,10 @@ const customBtnStyles = {
   },
 };
 
-const CustomBtn = ({ text, onClick, icon = null, disabled = false, variant = 'primary' , sx}) => {
-
+const CustomBtn = ({ text, onClick, icon = null, disabled = false, variant = 'primary' }) => {
   return (
     <Button
       style={customBtnStyles[variant]}
-      sx={{sx}}
       startIcon={icon}
       onClick={onClick}
       disabled={disabled}
