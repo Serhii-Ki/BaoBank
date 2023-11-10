@@ -15,7 +15,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useNavigate } from "react-router-dom";
 
-const TransactionItem = () => {
+const TransactionItem = ({transaction}) => {
   const navigate = useNavigate();
   const handleBack = () => {
     navigate(-1);
@@ -47,7 +47,7 @@ const TransactionItem = () => {
             <ArrowBackIosNewIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Transaction details
+            Детали Транзакции
           </Typography>
         </Toolbar>
       </AppBar>
