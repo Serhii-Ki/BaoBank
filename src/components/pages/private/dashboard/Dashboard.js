@@ -27,18 +27,18 @@ const DashBoard = () => {
   const listServices = [
     {
       element: <SyncAltOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Transfer",
-      link: "/transfer",
+      text: "Transaction",
+      link: "/transaction",
     },
     {
       element: <PriceCheckOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Request money transfer",
+      text: "Request money ",
       link: "/reqtransfer",
     },
     {
       element: <PeopleOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Manage group of friends",
-      link: "/managegroup",
+      text: "Profile",
+      link: "/profile",
     },
     {
       element: <FastfoodOutlinedIcon sx={{ fontSize: "2rem" }} />,

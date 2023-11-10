@@ -9,6 +9,7 @@ import PrivateLayout from "./layout/PrivateLayout";
 import PublicLayout from "./layout/PublicLayout";
 
 //View
+import Transactions from "./pages/private/transactions/Transactions";
 import SignIn from "./pages/public/signIn/SignIn";
 import SignUP from "./pages/public/signUp/SignUp";
 import Profile from "./pages/private/profile/Profile";
@@ -19,6 +20,8 @@ import Deposit from "./pages/private/deposit/Deposit";
 import ErrorPage from "./pages/errors/ErrorPage";
 import Npay from "./pages/public/npay/Npay";
 import DashBoard from "./pages/private/dashboard/Dashboard";
+import TransactionItem from "./pages/private/transactions/TransactionItem";
+import SendForm from "./pages/private/transactions/SendForm";
 
 function App() {
   const publicPages = [
@@ -45,7 +48,7 @@ function App() {
     {
       element: <Deposit />,
       path: '/deposit'
-    },
+    }
   ];
 
   const PrivatePages = [
@@ -61,6 +64,18 @@ function App() {
       element: <GiveGifts />,
       path: '/givegifts'
     },
+    {
+      element:<Transactions/>,
+      path:"/transaction"
+    },
+    {
+      element:<TransactionItem/>,
+      path :"/transactions/:transactionId"
+    },
+    {
+      element:<SendForm/>,
+      path :"/transactions/sendform"
+    }
   ];
 
 
