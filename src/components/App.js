@@ -35,7 +35,7 @@ function App() {
     },
     {
       element: <OnBoarding />,
-      path: '/onboarding'
+      path: '/'
     },
     {
       element: <Npay />,
@@ -54,7 +54,7 @@ function App() {
   const PrivatePages = [
     {
       element: <DashBoard />,
-      path: '/'
+      path: '/dashboard'
     },
     {
       element: <Profile />,

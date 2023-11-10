@@ -8,6 +8,7 @@ const useService = () => {
     const routes = {
         signup: 'signup',
         signin: 'signin',
+        users: 'users',
         me: 'me',
         transaction: 'transaction'
     };
@@ -36,6 +37,20 @@ const useService = () => {
     const GET_USER_DATA = async () => {
         const res = await request(
             `${apiBase}${routes.me}`,
+            'GET',
+            null,
+            {
+                "content-type": "application/json",
+                'x-access-token': token
+            }
+        );
+        return res;
+    };
+
+    //Запрос на получения всех юзеров
+    const GET_USERS = async () => {
+        const res = await request(
+            `${apiBase}${routes.users}`,
             'GET',
             null,
             {
@@ -85,7 +100,8 @@ const useService = () => {
         POST_LOGIN_USER,
         GET_USER_DATA,
         PUT_CHANGE_DATA,
-        POST_TRANSACTION
+        POST_TRANSACTION,
+        GET_USERS
     };
 }
 
