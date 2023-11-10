@@ -21,6 +21,7 @@ import ErrorPage from "./pages/errors/ErrorPage";
 import Npay from "./pages/public/npay/Npay";
 import DashBoard from "./pages/private/dashboard/Dashboard";
 import TransactionItem from "./pages/private/transactions/TransactionItem";
+import SendForm from "./pages/private/transactions/SendForm";
 
 function App() {
   const publicPages = [
@@ -70,6 +71,10 @@ function App() {
     {
       element:<TransactionItem/>,
       path :"/transactions/:transactionId"
+    },
+    {
+      element:<SendForm/>,
+      path :"/transactions/sendform"
     }
   ];
 

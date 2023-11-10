@@ -7,11 +7,15 @@ import {
   Typography,
   Grid,
   Container,
+  IconButton,
 } from "@mui/material";
 import TransactionListItem from "./TransactionListItem";
 import CustomBtn from "../../../designComponents/CustomBtn";
+import { useNavigate } from "react-router-dom";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const Transactions = () => {
+    let navigate = useNavigate();
   const transactions = [
     {
       id: 1,
@@ -30,9 +34,11 @@ const Transactions = () => {
    
   ];
 
-  
+  const handleBack = () => {
+    navigate(-1);
+  };
   const handleSend = () => {
-    // здесь логика для перехода на форму отправки
+    navigate("/transactions/sendform")
   };
 
   const handleReceive = () => {
@@ -42,7 +48,15 @@ const Transactions = () => {
   return (
     <Container>
       <AppBar position="static" elevation={0}  sx={{ backgroundColor: '#272643' , marginBottom:'10px' ,marginTop:'10px'}} >
-        <Toolbar sx={{ justifyContent: "center"  }}>
+        <Toolbar >
+        <IconButton
+            edge="start"
+            color='inherit'
+            aria-label="back"
+            onClick={handleBack}
+          >
+            <ArrowBackIosNewIcon />
+          </IconButton>
           <Typography variant="h6" color="inherit">
             Транзакции
           </Typography>
@@ -58,7 +72,7 @@ const Transactions = () => {
         <Grid item sx={{marginBottom:'5px'}}>
           <Grid container spacing={2} justifyContent="center">
             <Grid item>
-              <CustomBtn text="Отправить" variant="primary" />
+              <CustomBtn text="Отправить" variant="primary" onClick={handleSend} />
             </Grid>
             <Grid item>
               <CustomBtn text="Принять" variant="secondary" />
@@ -67,6 +81,7 @@ const Transactions = () => {
         </Grid>
 
         <Grid container direction="column">
+            {}
           {transactions.map((transaction) => (
             <Grid item key={transaction.id}>
               <TransactionListItem transaction={transaction} />
