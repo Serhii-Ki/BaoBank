@@ -42,6 +42,7 @@ function SignIn() {
                 if (data.token) {
                     console.log(data);
                     localStorage.setItem('jwt', data.token);
+                    navigate('/dashboard')
                 }
             })
             .catch((error) => {
