@@ -11,7 +11,10 @@ export default function WalletComponent({
   showBalance,
   toggleVisibility,
   balance,
+  process
 }) {
+  const setContent = process === 'confirmed' ? balance : 'loading...'
+
   return (
     <Box
       sx={{
@@ -50,7 +53,7 @@ export default function WalletComponent({
                 alignItems="center"
               >
                 <Link
-                  href="/deposit"
+                  href="/upaccount"
                   underline="none"
                   sx={{
                     justifyContent: "center",
@@ -137,7 +140,7 @@ export default function WalletComponent({
               {!showBalance ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </IconButton>
             <Typography variant="h5" component="span">
-              {showBalance ? ` $${balance.toLocaleString()}` : "$******"}
+              {showBalance ? `$ ${setContent}` : "$******"}
             </Typography>
           </Grid>
         </Box>

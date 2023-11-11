@@ -1,6 +1,7 @@
-import { action } from "mobx";
-
 const initialState = {
+    userData: {
+        test: '1'
+    },
     userDataForRegistration: {
         email: '',
         password: '',
@@ -16,11 +17,27 @@ const initialState = {
         isUserRegistration: false,
         isLoginIncorrect: false
     },
+    usersData: {}
 };
 
 const userReducer = (state = initialState, actions) => {
-    // Registration
+
     switch (actions.type) {
+        //User
+        case 'GET_USER':
+            return {
+                ...state,
+                userData: actions.userData
+            }
+
+        //Users
+        case 'GET_USERS':
+            return {
+                ...state,
+                usersData: actions.usersData
+            }
+
+        // Registration
         case 'ENTER_EMAIL':
             return {
                 ...state,

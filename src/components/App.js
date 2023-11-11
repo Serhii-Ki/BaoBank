@@ -22,6 +22,7 @@ import Npay from "./pages/public/npay/Npay";
 import DashBoard from "./pages/private/dashboard/Dashboard";
 import TransactionItem from "./pages/private/transactions/TransactionItem";
 import SendForm from "./pages/private/transactions/SendForm";
+import UpAccount from "./pages/private/upAccount/UpAccount";
 
 function App() {
   const publicPages = [
@@ -65,17 +66,21 @@ function App() {
       path: '/givegifts'
     },
     {
-      element:<Transactions/>,
-      path:"/transaction"
+      element: <Transactions />,
+      path: "/transaction"
     },
     {
-      element:<TransactionItem/>,
-      path :"/transactions/:transactionId"
+      element: <TransactionItem />,
+      path: "/transactions/:transactionId"
     },
     {
-      element:<SendForm/>,
-      path :"/transactions/sendform"
-    }
+      element: <SendForm />,
+      path: "/transactions/sendform"
+    },
+    {
+      element: <UpAccount />,
+      path: '/upaccount'
+    },
   ];
 
 

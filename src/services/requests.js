@@ -1,7 +1,7 @@
 import { useHttp } from "../hooks/http.hook";
 
 const useService = () => {
-    const { request } = useHttp();
+    const { request, clearError, process, setProcess } = useHttp();
 
     const apiBase = 'http://49.13.31.246:9191/';
     const token = localStorage.getItem('jwt');
@@ -62,11 +62,11 @@ const useService = () => {
     };
 
     //Запрос на изменение данных (баланса)
-    const PUT_CHANGE_DATA = async (dataBalance) => {
+    const PUT_CHANGE_DATA = async (data) => {
         const res = await request(
             `${apiBase}${routes.me}`,
             'PUT',
-            JSON.stringify(dataBalance),
+            JSON.stringify(data),
             {
                 "content-type": "application/json",
                 "x-access-token": token
@@ -81,7 +81,15 @@ const useService = () => {
         dataTransaction.trType = "out";
 
         const currentDate = new Date();
-        dataTransaction.trDate = currentDate.toISOString();
+        const day = currentDate.getDate();
+        const month = currentDate.getMonth() + 1;
+        const year = currentDate.getFullYear();
+        const hours = currentDate.getHours();
+        const minutes = currentDate.getMinutes();
+
+        const pad = (num) => (num < 10 ? '0' + num : num);
+
+        dataTransaction.trDate = `${pad(day)}.${pad(month)}.${year} ${pad(hours)}:${pad(minutes)}`;
 
         const res = await request(
             `${apiBase}${routes.transaction}`,
@@ -96,6 +104,9 @@ const useService = () => {
     };
 
     return {
+        clearError,
+        process,
+        setProcess,
         POST_REG_USER,
         POST_LOGIN_USER,
         GET_USER_DATA,
