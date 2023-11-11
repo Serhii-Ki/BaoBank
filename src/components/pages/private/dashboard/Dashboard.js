@@ -1,5 +1,11 @@
 import { Box, Grid, IconButton, Link, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import useService from "../../../../services/requests";
+import { getUserData } from "../../../../store/actions/actions";
+import Spinner from "../../partials/spinner/Spinner";
+
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import PriceCheckOutlinedIcon from "@mui/icons-material/PriceCheckOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -16,6 +22,11 @@ import BalanceDisplay from "./DashboardComponents/BalanceDisplay";
 import ModalWindow from "../../../designComponents/ModalWindow";
 
 const DashBoard = () => {
+  const dispatch = useDispatch();
+  const userData = useSelector(state => state.user.userData);
+
+  const { GET_USER_DATA: getUser, process, setProcess } = useService();
+
   const [isExpanded, setIsExpanded] = useState(false);
   const [balance, setBalance] = useState(40000);
   const [showBalance, setShowBalance] = useState(true);
@@ -90,6 +101,21 @@ const DashBoard = () => {
     },
   ].filter((item) => !item.hidden);
 
+  useEffect(() => {
+    onRequest();
+    // eslint-disable-next-line
+  }, []);
+
+  const onRequest = () => {
+    getUser()
+      .then(data => {
+        dispatch(getUserData(data));
+      })
+      .then(() => setProcess('confirmed'));
+  }
+
+  console.log(userData);
+
   const openModalHandler = () => {
     setOpenModal(true);
   };
@@ -100,7 +126,8 @@ const DashBoard = () => {
   return (
     <>
       <BalanceDisplay
-        balance={balance}
+        process={process}
+        balance={userData.balance}
         showBalance={showBalance}
         toggleVisibility={toggleVisibility}
       />
