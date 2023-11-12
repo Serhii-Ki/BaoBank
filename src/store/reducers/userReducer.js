@@ -1,7 +1,5 @@
 const initialState = {
-    userData: {
-        test: '1'
-    },
+    userData: {},
     userDataForRegistration: {
         email: '',
         password: '',

@@ -32,7 +32,6 @@ function SignIn() {
     } = useForm();
 
     const submittedData = (data) => {
-        console.log('OK');
         userData = {
             "username": data.login,
             "password": data.password

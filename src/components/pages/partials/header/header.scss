@@ -5,6 +5,20 @@
   padding: 20px 10px 40px 10px;
   background-color: #272643;
   color: white;
+  &__userdata {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    &-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+  }
   &__icons {
     display: flex;
     column-gap: 20px;

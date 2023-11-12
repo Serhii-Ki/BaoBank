@@ -77,8 +77,8 @@ const useService = () => {
 
     //Запрос на отправку тразакции
     const POST_TRANSACTION = async (dataTransaction) => {
-        dataTransaction.userAvatar = "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745";
-        dataTransaction.trType = "out";
+        dataTransaction.userAvatar = dataTransaction.userAvatar || "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745";
+        dataTransaction.trType = dataTransaction.trType || "out";
 
         const currentDate = new Date();
         const day = currentDate.getDate();
