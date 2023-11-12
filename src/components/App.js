@@ -59,7 +59,7 @@ function App() {
     },
     {
       element: <Profile />,
-      path: '/profile/:id'
+      path: '/profile'
     },
     {
       element: <GiveGifts />,

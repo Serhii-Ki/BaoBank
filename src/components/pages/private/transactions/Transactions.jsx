@@ -1,11 +1,9 @@
 // Transactions.jsx
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import useService from "../../../../services/requests";
-import { getUserData } from "../../../../store/actions/actions";
 import Spinner from "../../partials/spinner/Spinner";
 import {
-  Box,
   AppBar,
   Toolbar,
   Typography,
@@ -21,41 +19,15 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 const Transactions = () => {
   let navigate = useNavigate();
 
-  const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.userData);
-  const { GET_USER_DATA: getUser, process, setProcess } = useService();
+  const { process, setProcess } = useService();
 
   useEffect(() => {
-    onRequest();
+    if (userData._id) setProcess("confirmed");
     // eslint-disable-next-line
-  }, []);
-
-  const onRequest = () => {
-    getUser()
-      .then((data) => {
-        dispatch(getUserData(data));
-      })
-      .then(() => setProcess("confirmed"));
-  };
+  }, [userData]);
 
   console.log(userData);
-
-  // const transactions = [
-  //   {
-  //     id: 1,
-  //     name: "Yara Khalil",
-  //     date: "Oct 14, 10:24 AM",
-  //     amount: "-$15.00",
-  //     type: "send",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Sara Ibrahim",
-  //     date: "Oct 12, 02:13 PM",
-  //     amount: "+$20.50",
-  //     type: "receive",
-  //   },
-  // ];
 
   const handleBack = () => {
     navigate(-1);
