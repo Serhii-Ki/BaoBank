@@ -53,7 +53,7 @@ export default function WalletComponent({
               alignItems="center"
             >
               <Link
-                href="/upaccount"
+                // href="/upaccount"
                 underline="none"
                 sx={{
                   justifyContent: "center",
@@ -100,7 +100,7 @@ export default function WalletComponent({
               alignItems="center"
             >
               <Link
-                href="/scan-code"
+                href="/qrcode"
                 underline="none"
                 sx={{
                   justifyContent: "center",
@@ -114,7 +114,7 @@ export default function WalletComponent({
                   {" "}
                   <QrCodeScannerIcon />
                 </IconButton>
-                <Typography variant="caption">Scan Code</Typography>
+                <Typography variant="caption">Your Code</Typography>
               </Link>
             </Grid>
           </Grid>
