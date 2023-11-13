@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import SliderOnBoarding from './sliderOnBoarding/SliderOnBoarding';
 import PrimaryBtn from '../../../designComponents/PrimaryBtn';
+import CustomBtn from '../../../designComponents/CustomBtn';
 
 import "./onBoarding.scss";
 

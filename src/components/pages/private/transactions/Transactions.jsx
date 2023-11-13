@@ -89,7 +89,7 @@ const Transactions = () => {
 
         <Grid container direction="column">
           {process === "confirmed" ? (
-            userData.transactions.map((transaction, index) => (
+            userData.transactions.reverse().map((transaction, index) => (
               <Grid item key={index}>
                 <TransactionListItem transaction={transaction} />
               </Grid>
