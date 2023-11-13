@@ -23,6 +23,7 @@ import DashBoard from "./pages/private/dashboard/Dashboard";
 import TransactionItem from "./pages/private/transactions/TransactionItem";
 import SendForm from "./pages/private/transactions/SendForm";
 import UpAccount from "./pages/private/upAccount/UpAccount";
+import Notification from "./pages/private/notification/Notification";
 
 function App() {
   const publicPages = [
@@ -81,6 +82,11 @@ function App() {
       element: <UpAccount />,
       path: '/upaccount'
     },
+    {
+      element: <Notification />,
+      path: '/notification'
+    },
+
   ];
 
 

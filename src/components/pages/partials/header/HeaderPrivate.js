@@ -1,3 +1,4 @@
+
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { useEffect } from 'react';
@@ -5,9 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../../../../store/actions/actions";
 import useService from '../../../../services/requests';
-//Icons
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
+
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import PowerSettingsNewOutlinedIcon from "@mui/icons-material/PowerSettingsNewOutlined";
 
 import "./header.scss";
 
@@ -57,6 +58,7 @@ function HeaderPrivate() {
             </div>
         </header>
     );
+
 }
 
 export default HeaderPrivate;
