@@ -43,9 +43,9 @@ function UpAccount() {
         userName: ''
     });
 
-    // useEffect(async () => {
-    //     await setFormData(userName: userData.username)
-    // }, [])
+    useEffect(() => {
+        setFormData({ ...formData, userName: userData.username });
+    }, [userData]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
