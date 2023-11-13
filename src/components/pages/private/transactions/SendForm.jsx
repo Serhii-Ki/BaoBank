@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useService from "../../../../services/requests";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsersData, getUserData } from "../../../../store/actions/actions";
+import { getUsersData } from "../../../../store/actions/actions";
 import {
   Container,
   TextField,
@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ModalWindow from "../../../designComponents/ModalWindow";
 
 const customBtnStyles = {
   backgroundColor: "#272643",
@@ -29,13 +30,15 @@ const SendForm = () => {
   const usersData = useSelector((state) => state.user.usersData);
   const userData = useSelector((state) => state.user.userData);
   const {
-    GET_USER_DATA: getUser,
     GET_USERS: getUsers,
     POST_TRANSACTION: transaction,
     PUT_CHANGE_DATA: changeBalance,
     process,
     setProcess,
   } = useService();
+
+  const [openModal, setOpenModal] = useState(false);
+  const [enough, setEnough] = useState(true);
 
   const [formData, setFormData] = useState({
     amount: "",
@@ -47,7 +50,6 @@ const SendForm = () => {
 
   useEffect(() => {
     onRequest();
-    getMyData();
     // eslint-disable-next-line
   }, []);
 
@@ -59,11 +61,6 @@ const SendForm = () => {
       .then(() => setProcess("confirmed"));
   };
 
-  const getMyData = () => {
-    getUser().then((data) => {
-      dispatch(getUserData(data));
-    });
-  };
   console.log("My DATA", userData);
 
   const wrongSymbols = ["e", "E", "-", "+", ".", ","];
@@ -87,11 +84,43 @@ const SendForm = () => {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    transaction(formData).then((data) => {
-      changeBalance({ balance: userData.balance - formData.amount });
-    });
+  // const handleSubmit = () => {
+  //   setEnough(true);
+  //   transaction(formData).then(() => {
+  //     changeBalance({ balance: userData.balance - formData.amount }).then(
+  //       () => {
+  //         navigate("/transaction");
+  //       }
+  //     );
+  //   });
+  // };
+
+  const handleSubmit = async () => {
+    try {
+      setEnough(true);
+
+      // Выполнение транзакции
+      await transaction(formData);
+
+      // Обновление баланса после успешной транзакции
+      const updatedBalance = userData.balance - formData.amount;
+      await changeBalance({ balance: updatedBalance });
+
+      // Переход на страницу транзакции
+      navigate("/transaction");
+    } catch (error) {
+      // Обработка ошибок (например, показать сообщение об ошибке)
+      console.error("Ошибка при выполнении транзакции:", error);
+      // Дополнительные действия по обработке ошибок
+    }
+  };
+
+  const openModalHandler = () => {
+    setOpenModal(true);
+  };
+
+  const closeModalHandler = () => {
+    setOpenModal(false);
   };
 
   const handleBack = () => {
@@ -157,16 +186,52 @@ const SendForm = () => {
             <MenuItem value="">Загрузка...</MenuItem>
           )}
         </Select>
+        {enough ? null : (
+          <Typography
+            id="modal-modal-option"
+            variant="h8"
+            sx={{
+              margin: "10px 0",
+              color: "red",
+              textAlign: "center",
+            }}
+            component="h2"
+          >
+            У Вас недостаточно средств на счету
+          </Typography>
+        )}
 
         <Button
           fullWidth
           variant="contained"
           style={customBtnStyles}
-          type="submit"
+          onClick={() => {
+            if (userData.balance >= formData.amount) {
+              openModalHandler();
+            } else {
+              setEnough(false);
+            }
+          }}
         >
           Отправить
         </Button>
       </form>
+      {openModal && (
+        <ModalWindow
+          open={openModal}
+          onClose={closeModalHandler}
+          secondText={""}
+          mainText={"You confirm the transfer?"}
+          firstBtnText={"Yes"}
+          secondBtnText={"No"}
+          firstBtnClick={() => {
+            handleSubmit();
+            closeModalHandler();
+          }}
+          secondBtnClick={closeModalHandler}
+          title="Your Modal Title"
+        />
+      )}
     </Container>
   );
 };

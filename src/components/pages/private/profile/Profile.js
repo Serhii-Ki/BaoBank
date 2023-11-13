@@ -1,10 +1,117 @@
 import React from 'react';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useService from "../../../../services/requests";
+import { useState } from "react";
+import {
+    Container,
+    TextField,
+    Button,
+    Typography,
+    AppBar,
+    Toolbar,
+    IconButton,
+} from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+
+const customBtnStyles = {
+    backgroundColor: "#272643",
+    color: "white",
+    borderRadius: "20px",
+    padding: "10px 25px",
+    minWidth: "100px",
+    marginTop: "10px",
+};
 
 function Profile(props) {
+    const userData = useSelector(state => state.user.userData);
+    const {
+        PUT_CHANGE_DATA: changeUserData
+    } = useService();
+
+    const navigate = useNavigate();
+
+    const [formData, setFormData] = useState({
+        username: '',
+        avatar: ''
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        changeUserData(formData)
+            .then(data => {
+                handleBack()
+            });
+    };
+
+    const handleBack = () => {
+        navigate(-1);
+    };
+
     return (
-        <div>
-            <h1>Profile</h1>
-        </div>
+        <Container maxWidth="sm">
+            <AppBar
+                position="static"
+                sx={{
+                    backgroundColor: "#272643",
+                    marginTop: "20px",
+                    marginBottom: "10px",
+                }}
+            >
+                <Toolbar>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="back"
+                        onClick={handleBack}
+                    >
+                        <ArrowBackIosNewIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        Вернуться
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <form onSubmit={handleSubmit}>
+                <TextField
+                    fullWidth
+                    label="Новый никнейм"
+                    variant="outlined"
+                    margin="normal"
+                    name="username"
+                    type="text"
+                    value={formData.userName}
+                    onChange={(e) => handleChange(e)}
+                />
+                <TextField
+                    fullWidth
+                    label="Новый аватар"
+                    variant="outlined"
+                    margin="normal"
+                    name="avatar"
+                    type="text"
+                    value={formData.userAvatar}
+                    onChange={(e) => handleChange(e)}
+                />
+
+                <Button
+                    fullWidth
+                    variant="contained"
+                    style={customBtnStyles}
+                    type="submit"
+                >
+                    изменить
+                </Button>
+            </form>
+        </Container>
     );
 }
 

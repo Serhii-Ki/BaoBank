@@ -37,90 +37,91 @@ export default function WalletComponent({
       >
         <Box>
           {/* Top row with icons and labels in one row */}
-          {showBalance && (
+
+          <Grid
+            item
+            container
+            justifyContent="space-around"
+            alignItems="center"
+            sx={{ padding: 2, marginTop: "15px" }}
+          >
             <Grid
               item
+              xs={4}
               container
-              justifyContent="space-around"
+              direction="column"
               alignItems="center"
-              sx={{ padding: 2, marginTop: "15px" }}
             >
-              <Grid
-                item
-                xs={4}
-                container
-                direction="column"
-                alignItems="center"
+              <Link
+                href="/upaccount"
+                underline="none"
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  color: "#272643",
+                }}
               >
-                <Link
-                  href="/upaccount"
-                  underline="none"
-                  sx={{
-                    justifyContent: "center",
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "#272643",
-                  }}
-                >
-                  <IconButton>
-                    <AccountBalanceWalletIcon />
-                  </IconButton>
-                  <Typography variant="caption">Deposit</Typography>
-                </Link>
-              </Grid>
-              <Grid
-                item
-                xs={4}
-                container
-                direction="column"
-                alignItems="center"
-              >
-                <Link
-                  href="/withdrawal"
-                  underline="none"
-                  sx={{
-                    justifyContent: "center",
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "#272643",
-                  }}
-                >
-                  <IconButton>
-                    {" "}
-                    <ArrowUpwardIcon />
-                  </IconButton>
-                  <Typography variant="caption">Withdrawal</Typography>
-                </Link>
-              </Grid>
-              <Grid
-                item
-                xs={4}
-                container
-                direction="column"
-                alignItems="center"
-              >
-                <Link
-                  href="/scan-code"
-                  underline="none"
-                  sx={{
-                    justifyContent: "center",
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "#272643",
-                  }}
-                >
-                  {" "}
-                  <IconButton>
-                    {" "}
-                    <QrCodeScannerIcon />
-                  </IconButton>
-                  <Typography variant="caption">Scan Code</Typography>
-                </Link>
-              </Grid>
+                <IconButton>
+                  <AccountBalanceWalletIcon />
+                </IconButton>
+                <Typography variant="caption">Deposit</Typography>
+              </Link>
             </Grid>
-          )}
+            <Grid
+              item
+              xs={4}
+              container
+              direction="column"
+              alignItems="center"
+            >
+              <Link
+                href="/withdrawal"
+                underline="none"
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  color: "#272643",
+                }}
+              >
+                <IconButton>
+                  {" "}
+                  <ArrowUpwardIcon />
+                </IconButton>
+                <Typography variant="caption">Withdrawal</Typography>
+              </Link>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              container
+              direction="column"
+              alignItems="center"
+            >
+              <Link
+                href="/scan-code"
+                underline="none"
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  color: "#272643",
+                }}
+              >
+                {" "}
+                <IconButton>
+                  {" "}
+                  <QrCodeScannerIcon />
+                </IconButton>
+                <Typography variant="caption">Scan Code</Typography>
+              </Link>
+            </Grid>
+          </Grid>
+
 
           {/* Bottom row with balance information */}
+
           <Grid
             item
             container
@@ -143,6 +144,7 @@ export default function WalletComponent({
               {showBalance ? `$ ${setContent}` : "$******"}
             </Typography>
           </Grid>
+
         </Box>
       </Grid>
     </Box>

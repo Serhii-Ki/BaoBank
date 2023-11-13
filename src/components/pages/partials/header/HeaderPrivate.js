@@ -1,77 +1,64 @@
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
 
-//Icons
+import { styled, alpha } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getUserData } from "../../../../store/actions/actions";
+import useService from '../../../../services/requests';
+
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import PowerSettingsNewOutlinedIcon from "@mui/icons-material/PowerSettingsNewOutlined";
 
 import "./header.scss";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+
 
 function HeaderPrivate() {
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: "#272643",
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "40%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  }));
 
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
+    const navigate = useNavigate();
 
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-        width: "12ch",
-        "&:focus": {
-          width: "20ch",
-        },
-      },
-    },
-  }));
+    const userData = useSelector(state => state.user.userData);
+    const dispatch = useDispatch();
 
-  return (
-    <header className="header">
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ "aria-label": "search" }}
-        />
-      </Search>
-      <div className="header__icons">
-        <Link to="/notification">
-          <NotificationsNoneOutlinedIcon className="header__icon" />
-        </Link>
-        <PowerSettingsNewOutlinedIcon className="header__icon" />
-      </div>
-    </header>
-  );
+    const { GET_USER_DATA: getUser, setProcess, process } = useService();
+
+    useEffect(() => {
+        getMyData();
+        // eslint-disable-next-line
+    }, [])
+
+    const getMyData = () => {
+        getUser()
+            .then((data) => {
+                dispatch(getUserData(data));
+            })
+            .then(() => {
+                setProcess('confirmed');
+            });
+    };
+
+    return (
+        <header className="header">
+            <div className="header__userdata">
+                <div className="header__userdata-avatar"
+                    style={{
+                        background: `url(${userData.avatar && userData.avatar !== 'any' ? userData.avatar : "https://cdn-icons-png.flaticon.com/512/3607/3607444.png"}) center center/ cover no-repeat`
+                    }}
+                ></div>
+                <p className="header__userdata-name">{userData.username}</p>
+            </div>
+            <div className="header__icons">
+                <NotificationsNoneOutlinedIcon
+                    className='header__icon'
+                />
+                <PowerSettingsNewOutlinedIcon
+                    className='header__icon'
+                    onClick={() => navigate('/')}
+                />
+            </div>
+        </header>
+    );
+
 }
 
 export default HeaderPrivate;

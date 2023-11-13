@@ -25,13 +25,7 @@ const TransactionListItem = ({ transaction }) => {
       onClick={handleClick}
     >
       <ListItemAvatar>
-        <Avatar>
-          {transaction.trType === "out" ? (
-            <ArrowUpwardIcon />
-          ) : (
-            <ArrowDownwardIcon />
-          )}
-        </Avatar>
+        <Avatar src={transaction.userAvatar}></Avatar>
       </ListItemAvatar>
       <ListItemText
         primary={transaction.userName}
