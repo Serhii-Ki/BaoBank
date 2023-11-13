@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Spinner from "../../partials/spinner/Spinner";
+import { useEffect } from "react";
 
 const customBtnStyles = {
     backgroundColor: "#272643",
@@ -38,15 +39,19 @@ function UpAccount() {
 
     const [formData, setFormData] = useState({
         trType: "in",
-        amount: '',
-        userName: "Adding funds to your account"
+        amount: 0,
+        userName: ''
     });
+
+    // useEffect(async () => {
+    //     await setFormData(userName: userData.username)
+    // }, [])
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value,
+            [name]: parseFloat(value),
         }));
     };
 
@@ -107,7 +112,6 @@ function UpAccount() {
                             value={formData.amount}
                             onChange={(e) => handleChange(e)}
                         />
-
                         {process === 'error' ? <p className="error__message">Error</p> : null}
 
                         <Button

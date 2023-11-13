@@ -84,15 +84,35 @@ const SendForm = () => {
     }
   };
 
-  const handleSubmit = () => {
-    setEnough(true);
-    transaction(formData).then(() => {
-      changeBalance({ balance: userData.balance - formData.amount }).then(
-        () => {
-          handleBack();
-        }
-      );
-    });
+  // const handleSubmit = () => {
+  //   setEnough(true);
+  //   transaction(formData).then(() => {
+  //     changeBalance({ balance: userData.balance - formData.amount }).then(
+  //       () => {
+  //         navigate("/transaction");
+  //       }
+  //     );
+  //   });
+  // };
+
+  const handleSubmit = async () => {
+    try {
+      setEnough(true);
+
+      // Выполнение транзакции
+      await transaction(formData);
+
+      // Обновление баланса после успешной транзакции
+      const updatedBalance = userData.balance - formData.amount;
+      await changeBalance({ balance: updatedBalance });
+
+      // Переход на страницу транзакции
+      navigate("/transaction");
+    } catch (error) {
+      // Обработка ошибок (например, показать сообщение об ошибке)
+      console.error("Ошибка при выполнении транзакции:", error);
+      // Дополнительные действия по обработке ошибок
+    }
   };
 
   const openModalHandler = () => {
