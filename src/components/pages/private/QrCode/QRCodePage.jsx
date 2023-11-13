@@ -3,7 +3,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import {
   FacebookShareButton,
   TwitterShareButton,
-  TelegramShareButton,
+  TelegramShareButton,WhatsappShareButton,
 } from "react-share";
 import {
   Grid,
@@ -11,13 +11,13 @@ import {
   Tooltip,
   ClickAwayListener,
   Typography,
-  Box,
   Toolbar,
   AppBar,
   Container,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import TwitterIcon from "@mui/icons-material/Twitter";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
@@ -82,6 +82,13 @@ const QRCodePage = () => {
           <QRCodeCanvas onClick={handleCopyClick} value={url} size={256} />
         </Grid>
         <Grid container item xs={12} justifyContent="space-around">
+        <IconButton
+            sx={{ color: "#272643", fontSize: "48px" }}
+            component={WhatsappShareButton}
+            url={url}
+          >
+            <WhatsAppIcon sx={{ color: "#272643", fontSize: "2.5rem" }} />
+          </IconButton>
           <IconButton
             sx={{ color: "#272643", fontSize: "48px" }}
             component={FacebookShareButton}
@@ -89,13 +96,13 @@ const QRCodePage = () => {
           >
             <FacebookIcon sx={{ color: "#272643", fontSize: "2.5rem" }} />
           </IconButton>
-          <IconButton
+          {/* <IconButton
             sx={{ color: "#272643", fontSize: "48px" }}
             component={TwitterShareButton}
             url={url}
           >
             <TwitterIcon sx={{ color: "#272643", fontSize: "2.5rem" }} />
-          </IconButton>
+          </IconButton> */}
           <IconButton component={TelegramShareButton} url={url}>
             <TelegramIcon sx={{ color: "#272643", fontSize: "2.5rem" }} />
           </IconButton>
