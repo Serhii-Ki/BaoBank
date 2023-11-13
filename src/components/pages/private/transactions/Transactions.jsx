@@ -37,7 +37,7 @@ const Transactions = () => {
   };
 
   const handleReceive = () => {
-    // здесь логика для перехода на форму пополнения
+    navigate("/transactions/upaccount");
   };
 
   return (
@@ -82,7 +82,7 @@ const Transactions = () => {
               />
             </Grid>
             <Grid item>
-              <CustomBtn text="Принять" variant="secondary" />
+              <CustomBtn onClick={handleReceive}  text="Пополнить" variant="secondary" />
             </Grid>
           </Grid>
         </Grid>
