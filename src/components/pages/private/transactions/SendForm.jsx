@@ -13,7 +13,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ModalWindow from "../../../designComponents/ModalWindow";
 
@@ -27,6 +27,7 @@ const customBtnStyles = {
 };
 const SendForm = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const usersData = useSelector((state) => state.user.usersData);
   const userData = useSelector((state) => state.user.userData);
   const {
@@ -43,23 +44,33 @@ const SendForm = () => {
   const [formData, setFormData] = useState({
     amount: "",
     userName: "",
+    userId:'',
     userAvatar: "",
   });
 
   let navigate = useNavigate();
 
   useEffect(() => {
-    onRequest();
-    // eslint-disable-next-line
-  }, []);
+    const queryParams = new URLSearchParams(location.search);
+    const userId = queryParams.get('userId');
+    const userName = queryParams.get('userName');
 
-  const onRequest = () => {
-    getUsers(formData)
-      .then((data) => {
-        dispatch(getUsersData(data));
-      })
-      .then(() => setProcess("confirmed"));
-  };
+    if (userName && userId) {
+      setFormData((prevState) => ({
+        ...prevState,
+        userName: userName,
+        userId:userId,
+      }));
+
+    } else {
+    
+      getUsers(formData)
+        .then((data) => {
+          dispatch(getUsersData(data));
+        })
+        .then(() => setProcess('confirmed'));
+    }
+  }, []);
 
   console.log("My DATA", userData);
 
@@ -99,19 +110,14 @@ const SendForm = () => {
     try {
       setEnough(true);
 
-      // Выполнение транзакции
       await transaction(formData);
 
-      // Обновление баланса после успешной транзакции
       const updatedBalance = userData.balance - formData.amount;
       await changeBalance({ balance: updatedBalance });
 
-      // Переход на страницу транзакции
       navigate("/transaction");
     } catch (error) {
-      // Обработка ошибок (например, показать сообщение об ошибке)
       console.error("Ошибка при выполнении транзакции:", error);
-      // Дополнительные действия по обработке ошибок
     }
   };
 
