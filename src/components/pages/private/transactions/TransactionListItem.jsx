@@ -39,7 +39,7 @@ const TransactionListItem = ({ transaction }) => {
             mr: 1,
           }}
         >
-          {transaction.amount}
+          $ {transaction.amount}
         </Typography>
         {transaction.trType !== "out" ? (
           <ArrowDownwardIcon sx={{ color: "#272643" }} />
