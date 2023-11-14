@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useService from "../../../../services/requests";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsersData } from "../../../../store/actions/actions";
+import { useLocation } from "react-router-dom";
 import {
   Container,
   TextField,
@@ -13,7 +14,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ModalWindow from "../../../designComponents/ModalWindow";
 
@@ -27,7 +28,7 @@ const customBtnStyles = {
 };
 const SendForm = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  let location = useLocation();
   const usersData = useSelector((state) => state.user.usersData);
   const userData = useSelector((state) => state.user.userData);
   const {
@@ -44,37 +45,43 @@ const SendForm = () => {
   const [formData, setFormData] = useState({
     amount: "",
     userName: "",
-    userId:'',
     userAvatar: "",
   });
-
+  const wrongSymbols = ["e", "E", "-", "+", ".", ","];
   let navigate = useNavigate();
 
   useEffect(() => {
+    onRequest();
+
+    // eslint-disable-next-line
+  }, []);
+  const onRequest = () => {
+    getUsers(formData)
+      .then((data) => {
+        dispatch(getUsersData(data));
+        setInitialUserFromURL(data);
+      })
+      .then(() => setProcess("confirmed"));
+  };
+  const setInitialUserFromURL = (users) => {
     const queryParams = new URLSearchParams(location.search);
     const userId = queryParams.get('userId');
-    const userName = queryParams.get('userName');
-
-    if (userName && userId) {
-      setFormData((prevState) => ({
-        ...prevState,
-        userName: userName,
-        userId:userId,
-      }));
-
-    } else {
-    
-      getUsers(formData)
-        .then((data) => {
-          dispatch(getUsersData(data));
-        })
-        .then(() => setProcess('confirmed'));
+  
+    if (userId) {
+      const filteredUsers = users.filter((user) => user._id === userId);
+  
+      if (filteredUsers.length > 0) {
+        const selectedUser = filteredUsers[0];
+        setFormData((prevState) => ({
+          ...prevState,
+          userName: selectedUser.username,
+          userAvatar: selectedUser.avatar,
+        }));
+        dispatch(getUsersData(filteredUsers)); 
+      }
     }
-  }, []);
-
-  console.log("My DATA", userData);
-
-  const wrongSymbols = ["e", "E", "-", "+", ".", ","];
+  };
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -132,7 +139,7 @@ const SendForm = () => {
   const handleBack = () => {
     navigate(-1);
   };
-
+  console.log("My DATA", userData);
   return (
     <Container maxWidth="sm">
       <AppBar
