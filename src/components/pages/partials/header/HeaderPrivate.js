@@ -1,4 +1,3 @@
-
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { useEffect } from 'react';
@@ -12,7 +11,6 @@ import PowerSettingsNewOutlinedIcon from "@mui/icons-material/PowerSettingsNewOu
 
 import "./header.scss";
 
-
 function HeaderPrivate() {
 
     const navigate = useNavigate();
@@ -25,7 +23,7 @@ function HeaderPrivate() {
     useEffect(() => {
         getMyData();
         // eslint-disable-next-line
-    }, [])
+    }, [userData.transaction]);
 
     const getMyData = () => {
         getUser()

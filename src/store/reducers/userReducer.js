@@ -1,5 +1,7 @@
 const initialState = {
-    userData: {},
+    userData: {
+        transaction: false
+    },
     userDataForRegistration: {
         email: '',
         password: '',
@@ -170,6 +172,14 @@ const userReducer = (state = initialState, actions) => {
                 userDataForRegistration: {
                     ...state.userDataForRegistration,
                     isLoginIncorrect: true
+                }
+            };
+        case 'SENT_TRANSACTION':
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    transaction: !state.userData.transaction
                 }
             };
         default:
