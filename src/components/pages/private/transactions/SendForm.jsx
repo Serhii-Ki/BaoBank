@@ -89,10 +89,10 @@ const SendForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
+  
     if (name === "userName") {
       const selectedUser = usersData.find((user) => user.username === value);
-
+  
       setFormData((prevState) => ({
         ...prevState,
         userName: value,
@@ -101,7 +101,7 @@ const SendForm = () => {
     } else {
       setFormData((prevState) => ({
         ...prevState,
-        [name]: value,
+        [name]: name === "amount" ? Number(value) : value,
       }));
     }
   };
