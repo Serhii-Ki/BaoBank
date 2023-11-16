@@ -27,10 +27,8 @@ const Transactions = () => {
     // eslint-disable-next-line
   }, [userData]);
 
-  console.log(userData);
-
   const handleBack = () => {
-    navigate(-1);
+    navigate("/dashboard");
   };
   const handleSend = () => {
     navigate("/transactions/sendform");
@@ -82,7 +80,11 @@ const Transactions = () => {
               />
             </Grid>
             <Grid item>
-              <CustomBtn onClick={handleReceive}  text="Пополнить" variant="secondary" />
+              <CustomBtn
+                onClick={handleReceive}
+                text="Пополнить"
+                variant="secondary"
+              />
             </Grid>
           </Grid>
         </Grid>

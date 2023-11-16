@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import useService from "../../../../services/requests";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsersData } from "../../../../store/actions/actions";
+import {
+  getUsersData,
+  sentTransaction,
+} from "../../../../store/actions/actions";
 import { useLocation } from "react-router-dom";
 import {
   Container,
@@ -34,7 +37,6 @@ const SendForm = () => {
   const {
     GET_USERS: getUsers,
     POST_TRANSACTION: transaction,
-    PUT_CHANGE_DATA: changeBalance,
     process,
     setProcess,
   } = useService();
@@ -61,15 +63,18 @@ const SendForm = () => {
         dispatch(getUsersData(data));
         setInitialUserFromURL(data);
       })
-      .then(() => setProcess("confirmed"));
+      .then(() => {
+        setProcess("confirmed");
+      });
   };
+
   const setInitialUserFromURL = (users) => {
     const queryParams = new URLSearchParams(location.search);
-    const userId = queryParams.get('userId');
-  
+    const userId = queryParams.get("userId");
+
     if (userId) {
       const filteredUsers = users.filter((user) => user._id === userId);
-  
+
       if (filteredUsers.length > 0) {
         const selectedUser = filteredUsers[0];
         setFormData((prevState) => ({
@@ -77,11 +82,10 @@ const SendForm = () => {
           userName: selectedUser.username,
           userAvatar: selectedUser.avatar,
         }));
-        dispatch(getUsersData(filteredUsers)); 
+        dispatch(getUsersData(filteredUsers));
       }
     }
   };
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -102,30 +106,14 @@ const SendForm = () => {
     }
   };
 
-  // const handleSubmit = () => {
-  //   setEnough(true);
-  //   transaction(formData).then(() => {
-  //     changeBalance({ balance: userData.balance - formData.amount }).then(
-  //       () => {
-  //         navigate("/transaction");
-  //       }
-  //     );
-  //   });
-  // };
-
-  const handleSubmit = async () => {
-    try {
+  const handleSubmit = () => {
+    if (formData.amount > 0) {
       setEnough(true);
-
-      await transaction(formData);
-
-      const updatedBalance = userData.balance - formData.amount;
-      await changeBalance({ balance: updatedBalance });
-
-      navigate("/transaction");
-    } catch (error) {
-      console.error("Ошибка при выполнении транзакции:", error);
-    }
+      transaction(formData).then(() => {
+        dispatch(sentTransaction());
+        navigate("/transaction");
+      });
+    } else setEnough(false);
   };
 
   const openModalHandler = () => {
@@ -139,7 +127,7 @@ const SendForm = () => {
   const handleBack = () => {
     navigate(-1);
   };
-  console.log("My DATA", userData);
+
   return (
     <Container maxWidth="sm">
       <AppBar
@@ -210,7 +198,7 @@ const SendForm = () => {
             }}
             component="h2"
           >
-            У Вас недостаточно средств на счету
+            Не Верная транзакция
           </Typography>
         )}
 

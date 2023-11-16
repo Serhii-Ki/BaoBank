@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useService from "../../../../services/requests";
 import { useState } from "react";
@@ -11,6 +11,7 @@ import {
     Toolbar,
     IconButton,
 } from "@mui/material";
+import { sentTransaction } from "../../../../store/actions/actions";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Spinner from "../../partials/spinner/Spinner";
 import { useEffect } from "react";
@@ -25,10 +26,10 @@ const customBtnStyles = {
 };
 
 function UpAccount() {
+    const dispatch = useDispatch();
     const userData = useSelector(state => state.user.userData);
     const {
         POST_TRANSACTION: transaction,
-        PUT_CHANGE_DATA: changeBalance,
         process,
         setProcess
     } = useService();
@@ -38,13 +39,18 @@ function UpAccount() {
     const wrongSymbols = ["e", "E", "-", "+", ".", ","];
 
     const [formData, setFormData] = useState({
-        trType: "in",
-        amount: 0,
-        userName: ''
+        trType: "topUp",
+        amount: '',
+        userName: '',
+        userAvatar: ''
     });
 
     useEffect(() => {
-        setFormData({ ...formData, userName: userData.username });
+        setFormData({
+            ...formData,
+            userName: userData.username,
+            userAvatar: userData.avatar
+        });
     }, [userData]);
 
     const handleChange = (event) => {
@@ -59,9 +65,9 @@ function UpAccount() {
         event.preventDefault();
         transaction(formData)
             .then(() => {
-                changeBalance({ balance: userData.balance + +formData.amount });
+                dispatch(sentTransaction());
                 setProcess('confirmed');
-                handleBack();
+                navigate('/transaction');
             })
             .catch((error) => {
                 console.error("Error in transaction:", error);
@@ -71,8 +77,6 @@ function UpAccount() {
     const handleBack = () => {
         navigate(-1);
     };
-
-    console.log(process);
 
     return (
         <Container maxWidth="sm">
