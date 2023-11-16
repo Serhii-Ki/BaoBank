@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   AppBar,
@@ -6,85 +6,139 @@ import {
   IconButton,
   Typography,
   Paper,
-  List,
-  ListItem,
-  ListItemText,
+  Grid,
   Container,
+  Avatar,
 } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const TransactionItem = ({transaction}) => {
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
+const TransactionItem = () => {
+  const [transactionData, setTransactionData] = useState({
+    address: "",
+    amount: "",
+    fee: "",
+    trDate: "",
+    trType: "",
+    tradingCode: "",
+    userAvatar: "",
+    userName: "",
+  });
+  const userData = useSelector((state) => state.user.userData);
   const navigate = useNavigate();
+  const query = useQuery();
+  const tradingCode = query.get("tradingCode");
+
+  useEffect(() => {
+    if (userData && Array.isArray(userData.transactions)) {
+      const transaction = userData.transactions.find(
+        (t) => t.tradingCode === Number(tradingCode)
+      );
+      if (transaction) {
+        setTransactionData(transaction);
+      }
+    }
+  }, [userData, tradingCode]);
+
   const handleBack = () => {
     navigate(-1);
-  };
-  const transactionDetails = {
-    fund: "APAY Wallet",
-    transactionFee: "Free",
-    tradingCode: "533578",
-    time: "12:43, Feb 12/2020",
-    supplier: "City Electricity",
-    customerCode: "CEA 2543212345",
-    customer: "Alex",
-    address: "424 North Carolina Ave.",
-    paymentCycle: "February",
-    amountOfMoney: "$ 535",
-    total: "$ 535",
   };
 
   return (
     <Container>
-      <AppBar position="static"  sx={{ backgroundColor: '#272643' , marginTop:'20px' , marginBottom:"10px"}}>
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "#272643",
+          marginTop: "20px",
+          marginBottom: "10px",
+        }}
+      >
         <Toolbar>
           <IconButton
             edge="start"
-            color='inherit'
+            color="inherit"
             aria-label="back"
             onClick={handleBack}
           >
             <ArrowBackIosNewIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Детали Транзакции
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, textAlign: "center" }}
+          >
+            Детали транзакции
           </Typography>
         </Toolbar>
       </AppBar>
 
       <Box my={2}>
-        <Paper variant="outlined" sx={{ mb: 2, p: 2 }}>
-          <Typography variant="h6" color="#272643" gutterBottom>
-            City Electricity A
-          </Typography>
-          <Typography color="textSecondary" gutterBottom>
-            Feb 12, 2020
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              color: "success.main",
-            }}
-          >
-            <CheckCircleIcon sx={{ mr: 1 }} /> $ 400.00
-          </Typography>
-          <Typography variant="caption" display="block" gutterBottom>
-            Transaction Status: Successful
-          </Typography>
-        </Paper>
+        <Grid container spacing={2} justifyContent="center">
+          <Grid item xs={12} md={6}>
+            <Paper elevation={1} sx={{ padding: 2 }}>
+              <Grid
+                container
+                spacing={2}
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Grid item>
+                  <Avatar sx={{minHeight:'64px' , minWidth:'64px'}} src={transactionData.userAvatar} />
+                </Grid>
+                <Grid item>
+                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                    {transactionData.userName}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      display: "block",
+                      textAlign: "center",
+                    }}
+                  >
+                    {transactionData.trDate}
+                  </Typography>
+                  <Typography variant="h6" sx={{ my: 2, textAlign: "center", color:'green'}}>
+                    ${transactionData.amount}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
 
-        <List component="nav" aria-label="transaction details">
-          {Object.entries(transactionDetails).map(([key, value]) => (
-            <ListItem key={key} divider>
-              <ListItemText
-                primary={key.replace(/([A-Z])/g, " $1").trim()}
-                secondary={value}
-              />
-            </ListItem>
-          ))}
-        </List>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={1} sx={{ padding: 2 }}>
+              <Typography
+                variant="body2"
+                gutterBottom
+                sx={{ textAlign: "center" }}
+              >
+                Комиссия за транзакцию:{" "}
+                <b>
+                  {transactionData.fee === "0"
+                    ? "Бесплатно"
+                    : transactionData.fee}
+                </b>
+              </Typography>
+              <Typography
+                variant="body2"
+                gutterBottom
+                sx={{ textAlign: "center" }}
+              >
+                Торговый код: <b>{transactionData.tradingCode}</b>
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
       </Box>
     </Container>
   );

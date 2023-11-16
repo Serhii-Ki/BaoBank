@@ -17,9 +17,9 @@ import { Height } from "@mui/icons-material";
 const TransactionListItem = ({ transaction }) => {
   const userData = useSelector((state) => state.user.userData);
   let navigate = useNavigate();
-
+  const tradingCode = transaction.tradingCode;
   const handleClick = () => {
-    navigate(`/transactions/${transaction.id}`);
+    navigate(`/transactions/transactionId?tradingCode=${tradingCode}`);
   };
   console.log("My new data", userData);
   return (
@@ -42,15 +42,26 @@ const TransactionListItem = ({ transaction }) => {
         }
         secondary={transaction.trDate}
       />
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Box sx={{ display: "flex", alignItems: "center", marginBottom:'20px'}}>
         <Typography
           variant="body1"
+          color={'white'}
           sx={{
-            color: transaction.trType === "out" ? "error.main" : "success.main",
+            bgcolor: transaction.trType === "out" ? "error.main" : "success.main",
+            borderRadius:'4px',
+            padding:'2px',
             mr: 1,
           }}
+          // sx={{
+          //   color: transaction.trType === "out" ? "error.main" : "success.main",
+
+          //   mr: 1,
+          // }}
         >
-          $ {transaction.amount}
+         {" "}
+          {transaction.trType === "out"
+            ? `$ ${transaction.amount}`
+            : `$ ${transaction.amount}`}
         </Typography>
         {transaction.trType !== "out" ? (
           <ArrowDownwardIcon sx={{ color: "#272643" }} />
