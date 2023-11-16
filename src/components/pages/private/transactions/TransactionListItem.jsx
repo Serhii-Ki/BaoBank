@@ -1,5 +1,6 @@
 // TransactionListItem.jsx
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   ListItem,
@@ -11,13 +12,16 @@ import {
 } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { Height } from "@mui/icons-material";
 
 const TransactionListItem = ({ transaction }) => {
+  const userData = useSelector((state) => state.user.userData);
   let navigate = useNavigate();
   const tradingCode = transaction.tradingCode;
   const handleClick = () => {
     navigate(`/transactions/transactionId?tradingCode=${tradingCode}`);
   };
+  console.log("My new data", userData);
   return (
     <ListItem
       sx={{ bgcolor: "background.paper", my: 1, borderRadius: "4px" }}
@@ -25,10 +29,17 @@ const TransactionListItem = ({ transaction }) => {
       onClick={handleClick}
     >
       <ListItemAvatar>
-        <Avatar src={transaction.userAvatar}></Avatar>
+        <Avatar
+          src={transaction.userAvatar}
+          sx={{ border: "2px solid black", height: '60px', width: '60px', marginRight: '10px'}}
+        ></Avatar>
       </ListItemAvatar>
       <ListItemText
-        primary={transaction.userName}
+        primary={
+          transaction.userName === userData.username
+            ? "Пополнение счета"
+            : transaction.userName
+        }
         secondary={transaction.trDate}
       />
       <Box sx={{ display: "flex", alignItems: "center", marginBottom:'20px'}}>
