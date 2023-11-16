@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { Height } from "@mui/icons-material";
 
 const TransactionListItem = ({ transaction }) => {
   const userData = useSelector((state) => state.user.userData);
@@ -30,7 +31,7 @@ const TransactionListItem = ({ transaction }) => {
       <ListItemAvatar>
         <Avatar
           src={transaction.userAvatar}
-          sx={{ border: "2px solid black" }}
+          sx={{ border: "2px solid black", height: '60px', width: '60px', marginRight: '10px'}}
         ></Avatar>
       </ListItemAvatar>
       <ListItemText
