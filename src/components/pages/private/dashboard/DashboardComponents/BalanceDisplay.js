@@ -53,7 +53,7 @@ export default function WalletComponent({
               alignItems="center"
             >
               <Link
-                // href="/upaccount"
+                href="/deposit"
                 underline="none"
                 sx={{
                   justifyContent: "center",
@@ -65,7 +65,7 @@ export default function WalletComponent({
                 <IconButton>
                   <AccountBalanceWalletIcon />
                 </IconButton>
-                <Typography variant="caption">Deposit</Typography>
+                <Typography variant="caption">Wallet</Typography>
               </Link>
             </Grid>
             <Grid

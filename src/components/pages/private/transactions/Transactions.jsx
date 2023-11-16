@@ -20,6 +20,7 @@ const Transactions = () => {
   let navigate = useNavigate();
 
   const userData = useSelector((state) => state.user.userData);
+ const transactions=userData.transactions
   const { process, setProcess } = useService();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Transactions = () => {
     // eslint-disable-next-line
   }, [userData]);
 
-  console.log(userData);
+  console.log(userData.transactions);
 
   const handleBack = () => {
     navigate(-1);
@@ -89,7 +90,7 @@ const Transactions = () => {
 
         <Grid container direction="column">
           {process === "confirmed" ? (
-            userData.transactions.reverse().map((transaction, index) => (
+           transactions.reverse().map((transaction, index) => (
               <Grid item key={index}>
                 <TransactionListItem transaction={transaction} />
               </Grid>

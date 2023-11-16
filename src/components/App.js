@@ -25,6 +25,8 @@ import SendForm from "./pages/private/transactions/SendForm";
 import UpAccount from "./pages/private/upAccount/UpAccount";
 import Notification from "./pages/private/notification/Notification";
 import QrCode from "./pages/private/QrCode/QRCodePage";
+import OrderFood from "./pages/private/orderFood/OrderFood";
+import FoodItem from "./pages/private/orderFood/FoodItem";
 
 function App() {
   const publicPages = [
@@ -73,7 +75,7 @@ function App() {
     },
     {
       element: <TransactionItem />,
-      path: "/transactions/:transactionId"
+      path: "/transactions/transactionId"
     },
     {
       element: <SendForm />,
@@ -90,6 +92,19 @@ function App() {
     {
       element: <QrCode />,
       path: '/qrcode'
+    },
+    
+    {
+      element: <Deposit />,
+      path: '/deposit'
+    },
+    {
+      element: <OrderFood />,
+      path: '/fastfood'
+    },
+    {
+      element: <FoodItem />,
+      path: '/fastfood/:type/:id'
     },
 
   ];
