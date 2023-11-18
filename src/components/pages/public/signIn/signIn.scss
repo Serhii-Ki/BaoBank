@@ -17,3 +17,10 @@
     font-weight: 600;
   }
 }
+@media (max-width: 992px){
+  .signin {
+    &__input {
+      width: 100%;
+    }
+  }
+}

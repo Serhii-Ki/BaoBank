@@ -1,5 +1,5 @@
 // TransactionListItem.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -12,16 +12,28 @@ import {
 } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { Height } from "@mui/icons-material";
 
 const TransactionListItem = ({ transaction }) => {
   const userData = useSelector((state) => state.user.userData);
   let navigate = useNavigate();
+
   const tradingCode = transaction.tradingCode;
+
+  const [transactionUserName, setTransactionUserName] = useState('');
+  useEffect(() => {
+    if (transaction.userName) {
+      setTransactionUserName(
+        transaction.userName.length < 10
+          ? transaction.userName
+          : transaction.userName.slice(0, 10) + "..."
+      );
+    }
+  }, [transaction.userName]);
+
   const handleClick = () => {
     navigate(`/transactions/transactionId?tradingCode=${tradingCode}`);
   };
-  console.log("My new data", userData);
+
   return (
     <ListItem
       sx={{ bgcolor: "background.paper", my: 1, borderRadius: "4px" }}
@@ -38,7 +50,7 @@ const TransactionListItem = ({ transaction }) => {
         primary={
           transaction.userName === userData.username
             ? "Пополнение счета"
-            : transaction.userName
+            : transactionUserName
         }
         secondary={transaction.trDate}
       />
@@ -52,11 +64,6 @@ const TransactionListItem = ({ transaction }) => {
             padding:'2px',
             mr: 1,
           }}
-          // sx={{
-          //   color: transaction.trType === "out" ? "error.main" : "success.main",
-
-          //   mr: 1,
-          // }}
         >
          {" "}
           {transaction.trType === "out"
