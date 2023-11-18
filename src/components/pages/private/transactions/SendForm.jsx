@@ -16,6 +16,7 @@ import {
   IconButton,
   Select,
   MenuItem,
+  Avatar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -165,28 +166,41 @@ const SendForm = () => {
           onChange={handleChange}
         />
 
-        <Select
-          placeholder="user name"
-          fullWidth
-          variant="outlined"
-          labelId="select-country-label"
-          id="select-country"
-          label="Имя пользователя"
-          value={formData.userName}
-          name="userName"
-          required={true}
-          onChange={handleChange}
-        >
-          {process === "confirmed" ? (
-            usersData.map((user) => (
-              <MenuItem key={user._id} value={user.username}>
-                {user.username}
-              </MenuItem>
-            ))
-          ) : (
-            <MenuItem value="">Загрузка...</MenuItem>
-          )}
-        </Select>
+      <Select
+        fullWidth
+        variant="outlined"
+        labelId="select-country-label"
+        id="select-country"
+        label="Имя пользователя"
+        value={formData.userName}
+        name="userName"
+        required={true}
+        onChange={handleChange}
+      >
+      <MenuItem value="" disabled>
+        Выберите пользователя
+      </MenuItem>
+        {process === "confirmed" ? (
+          usersData.map((user) => {
+            if (user.avatar && user.username !== userData.username) {
+              return (
+                <MenuItem key={user._id} value={user.username}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Avatar
+                    src={user.avatar}
+                    sx={{marginRight: '10px'}}
+                  ></Avatar>
+                    {user.username}
+                  </div>
+                </MenuItem>
+              );
+            }
+            return null;
+          })
+        ) : (
+          <MenuItem value="">Загрузка...</MenuItem>
+        )}
+      </Select>
         {enough ? null : (
           <Typography
             id="modal-modal-option"

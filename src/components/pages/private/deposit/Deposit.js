@@ -18,11 +18,12 @@ function Deposit() {
   let navigate = useNavigate();
   const userData = useSelector((state) => state.user.userData);
   const { avatar, username, balance, transactions } = userData;
-  console.log(userData);
+ 
   const transactionItems =
     transactions && transactions.length ? (
       transactions
         .slice(-3)
+        .reverse()
         .map((transaction) => (
           <TransactionListItem key={transaction.id} transaction={transaction} />
         ))

@@ -13,7 +13,7 @@ export default function WalletComponent({
   balance,
   process
 }) {
-  const setContent = process === 'confirmed' && balance ? balance : 'loading...'
+  const setContent = process === 'confirmed' && typeof balance !== 'undefined' ? balance : 'loading...';
 
   return (
     <Box
