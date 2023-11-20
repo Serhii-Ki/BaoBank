@@ -11,16 +11,15 @@ import {
   TextField,
   Button,
   Typography,
-  AppBar,
-  Toolbar,
-  IconButton,
+
   Select,
   MenuItem,
   Avatar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+
 import ModalWindow from "../../../designComponents/ModalWindow";
+import CustomAppBar from "../../../designComponents/CustomAppBar";
 
 const customBtnStyles = {
   backgroundColor: "#272643",
@@ -90,10 +89,10 @@ const SendForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     if (name === "userName") {
       const selectedUser = usersData.find((user) => user.username === value);
-  
+
       setFormData((prevState) => ({
         ...prevState,
         userName: value,
@@ -131,28 +130,7 @@ const SendForm = () => {
 
   return (
     <Container maxWidth="sm">
-      <AppBar
-        position="static"
-        sx={{
-          backgroundColor: "#272643",
-          marginTop: "20px",
-          marginBottom: "10px",
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="back"
-            onClick={handleBack}
-          >
-            <ArrowBackIosNewIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Вернуться
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <CustomAppBar text={"Come back"} onClick={handleBack} />
       <form onSubmit={handleSubmit}>
         <TextField
           fullWidth

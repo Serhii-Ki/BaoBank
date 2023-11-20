@@ -3,21 +3,20 @@ import {
   Box,
   Typography,
   Avatar,
-  Button,
+
   Grid,
   Container,
-  AppBar,
-  Toolbar,
-  IconButton,
+
 } from "@mui/material";
 import CustomBtn from "../../../designComponents/CustomBtn";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+
+import CustomAppBar from "../../../designComponents/CustomAppBar";
 const FoodItem = () => {
-    let navigate = useNavigate()
-    const handleClick = () => {
-        navigate("/fastfood");
-      };
+  let navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/fastfood");
+  };
   const restaurant = {
     id: 1,
     name: "Gourmet Eats",
@@ -33,22 +32,19 @@ const FoodItem = () => {
       },
       {
         name: "Grilled Salmon",
-        description:
-          "Freshly grilled salmon with  seasonal vegetables.",
+        description: "Freshly grilled salmon with  seasonal vegetables.",
         imageUrl: "/images/grilled-salmon.jpg",
         price: "650 $",
       },
       {
         name: "Grilled Salmon",
-        description:
-          "Freshly grilled salmon with  seasonal vegetables.",
+        description: "Freshly grilled salmon with  seasonal vegetables.",
         imageUrl: "/images/grilled-salmon.jpg",
         price: "650 $",
       },
       {
         name: "Grilled Salmon",
-        description:
-          "Freshly grilled salmon with  seasonal vegetables.",
+        description: "Freshly grilled salmon with  seasonal vegetables.",
         imageUrl: "/images/grilled-salmon.jpg",
         price: "650 $",
       },
@@ -57,29 +53,7 @@ const FoodItem = () => {
 
   return (
     <Container>
-              <AppBar
-        position="static"
-        elevation={0}
-        sx={{
-          backgroundColor: "#272643",
-          marginBottom: "10px",
-          marginTop: "10px",
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="back"
-            onClick={handleClick}
-          >
-            <ArrowBackIosNewIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit">
-            {restaurant.name}
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <CustomAppBar text={restaurant.name} onClick={handleClick} />
       <Box
         p={2}
         display={"flex"}
@@ -113,7 +87,7 @@ const FoodItem = () => {
               alignItems="center"
               display="flex"
               flexDirection="column"
-              height={'100%'}
+              height={"100%"}
             >
               <Avatar
                 alt={dish.name}

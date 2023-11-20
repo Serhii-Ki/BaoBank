@@ -8,9 +8,12 @@ import {
   MenuItem,
   FormControl,
   Rating,
-} from "@mui/material";
-import { Link } from "react-router-dom";
 
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
+import CustomBtn from "../../../designComponents/CustomBtn";
+import CustomAppBar from "../../../designComponents/CustomAppBar";
 const restaurants = [
   {
     id: 1,
@@ -50,6 +53,7 @@ const restaurants = [
 ];
 
 const OrderFood = () => {
+  let navigate = useNavigate();
   const [filter, setFilter] = useState({ type: "", rating: "" });
 
   const handleTypeChange = (event) => {
@@ -66,9 +70,16 @@ const OrderFood = () => {
       (filter.rating ? restaurant.rating >= filter.rating : true)
     );
   });
+  const handleBack = () => {
+    navigate("/dashboard");
+  };
+  const handleOrder = () => {
+    navigate("/fastfood/:type/:id");
+  };
 
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 20, paddingTop: 10 }}>
+      <CustomAppBar text={"Order Food"} onClick={handleBack}/>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12}>
           <FormControl fullWidth>
@@ -101,8 +112,32 @@ const OrderFood = () => {
           </FormControl>
         </Grid>
         {filteredRestaurants.map((restaurant) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={restaurant.id}>
-            <Box p={2} boxShadow={3} borderRadius={2} >
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            key={restaurant.id}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              p={2}
+              boxShadow={3}
+              borderRadius={2}
+            >
               <Avatar
                 alt={restaurant.name}
                 src={`/images/${restaurant.name}.jpg`}
@@ -110,11 +145,22 @@ const OrderFood = () => {
               <Typography variant="h6">{restaurant.name}</Typography>
               <Typography>{restaurant.description}</Typography>
               <Box display="flex" alignItems="center">
-                <Rating value={restaurant.rating} defaultValue={2.5} precision={1} readOnly />
+                <Rating
+                  value={restaurant.rating}
+                  defaultValue={2.5}
+                  precision={1}
+                  readOnly
+                />
                 <Typography style={{ marginLeft: 8 }}>
                   {restaurant.rating}
                 </Typography>
               </Box>
+              <CustomBtn
+                onClick={handleOrder}
+                sx={{ marginTop: "5px" }}
+                variant="primary"
+                text={"Order"}
+              />
             </Box>
           </Grid>
         ))}

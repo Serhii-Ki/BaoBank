@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  AppBar,
-  Toolbar,
-  IconButton,
+
   Typography,
   Paper,
   Grid,
   Container,
   Avatar,
 } from "@mui/material";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+import { useLocation, useNavigate,} from "react-router-dom";
 import { useSelector } from "react-redux";
+import CustomAppBar from "../../../designComponents/CustomAppBar";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -51,32 +50,7 @@ const TransactionItem = () => {
 
   return (
     <Container>
-      <AppBar
-        position="static"
-        sx={{
-          backgroundColor: "#272643",
-          marginTop: "20px",
-          marginBottom: "10px",
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="back"
-            onClick={handleBack}
-          >
-            <ArrowBackIosNewIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, textAlign: "center" }}
-          >
-            Детали транзакции
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <CustomAppBar text={"Детали транзакции"} onClick={handleBack} />
 
       <Box my={2}>
         <Grid container spacing={2} justifyContent="center">
@@ -89,7 +63,10 @@ const TransactionItem = () => {
                 justifyContent="center"
               >
                 <Grid item>
-                  <Avatar sx={{minHeight:'64px' , minWidth:'64px'}} src={transactionData.userAvatar} />
+                  <Avatar
+                    sx={{ minHeight: "64px", minWidth: "64px" }}
+                    src={transactionData.userAvatar}
+                  />
                 </Grid>
                 <Grid item>
                   <Typography variant="h5" sx={{ fontWeight: "bold" }}>
@@ -107,7 +84,10 @@ const TransactionItem = () => {
                   >
                     {transactionData.trDate}
                   </Typography>
-                  <Typography variant="h6" sx={{ my: 2, textAlign: "center", color:'green'}}>
+                  <Typography
+                    variant="h6"
+                    sx={{ my: 2, textAlign: "center", color: "green" }}
+                  >
                     ${transactionData.amount}
                   </Typography>
                 </Grid>
