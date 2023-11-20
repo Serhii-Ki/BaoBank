@@ -6,14 +6,11 @@ import {
   Avatar,
   List,
   Box,
-  AppBar,
-  Toolbar,
-  IconButton,
   Container,
 } from "@mui/material";
 import TransactionListItem from "../transactions/TransactionListItem";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
+import CustomAppBar from "../../../designComponents/CustomAppBar";
 function Deposit() {
   let navigate = useNavigate();
   const userData = useSelector((state) => state.user.userData);
@@ -34,30 +31,7 @@ function Deposit() {
   };
   return (
     <Container>
-      <AppBar
-        position="static"
-        elevation={0}
-        sx={{
-          backgroundColor: "#272643",
-          marginBottom: "10px",
-          marginTop: "10px",
-        
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="back"
-            onClick={handleBack}
-          >
-            <ArrowBackIosNewIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit">
-           Wallet
-          </Typography>
-        </Toolbar>
-      </AppBar>{" "}
+      <CustomAppBar text={"Wallet"} onClick={handleBack} />
       <Box
         display="flex"
         justifyContent="center"

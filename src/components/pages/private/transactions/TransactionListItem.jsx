@@ -21,7 +21,6 @@ const TransactionListItem = ({ transaction }) => {
   const handleClick = () => {
     navigate(`/transactions/transactionId?tradingCode=${tradingCode}`);
   };
-  console.log("My new data", userData);
   return (
     <ListItem
       sx={{ bgcolor: "background.paper", my: 1, borderRadius: "4px" }}
@@ -31,7 +30,12 @@ const TransactionListItem = ({ transaction }) => {
       <ListItemAvatar>
         <Avatar
           src={transaction.userAvatar}
-          sx={{ border: "2px solid black", height: '60px', width: '60px', marginRight: '10px'}}
+          sx={{
+            border: "2px solid black",
+            height: "60px",
+            width: "60px",
+            marginRight: "10px",
+          }}
         ></Avatar>
       </ListItemAvatar>
       <ListItemText
@@ -42,23 +46,22 @@ const TransactionListItem = ({ transaction }) => {
         }
         secondary={transaction.trDate}
       />
-      <Box sx={{ display: "flex", alignItems: "center", marginBottom:'20px'}}>
+      <Box sx={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
         <Typography
           variant="body1"
-          color={'white'}
-          sx={{
-            bgcolor: transaction.trType === "out" ? "error.main" : "success.main",
-            borderRadius:'4px',
-            padding:'2px',
-            mr: 1,
-          }}
+          color={"white"}
           // sx={{
-          //   color: transaction.trType === "out" ? "error.main" : "success.main",
-
+          //   bgcolor: transaction.trType === "out" ? "error.main" : "success.main",
+          //   borderRadius:'4px',
+          //   padding:'2px',
           //   mr: 1,
           // }}
+          sx={{
+            color: transaction.trType === "out" ? "error.main" : "success.main",
+            mr: 1,
+          }}
         >
-         {" "}
+          {" "}
           {transaction.trType === "out"
             ? `$ ${transaction.amount}`
             : `$ ${transaction.amount}`}

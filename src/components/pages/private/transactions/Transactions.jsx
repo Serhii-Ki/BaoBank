@@ -4,23 +4,21 @@ import { useSelector } from "react-redux";
 import useService from "../../../../services/requests";
 import Spinner from "../../partials/spinner/Spinner";
 import {
-  AppBar,
-  Toolbar,
-  Typography,
+
   Grid,
   Container,
-  IconButton,
+
 } from "@mui/material";
 import TransactionListItem from "./TransactionListItem";
 import CustomBtn from "../../../designComponents/CustomBtn";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import CustomAppBar from "../../../designComponents/CustomAppBar";
 
 const Transactions = () => {
   let navigate = useNavigate();
 
   const userData = useSelector((state) => state.user.userData);
- const transactions=userData.transactions
+  const transactions = userData.transactions;
   const { process, setProcess } = useService();
 
   useEffect(() => {
@@ -41,29 +39,7 @@ const Transactions = () => {
 
   return (
     <Container>
-      <AppBar
-        position="static"
-        elevation={0}
-        sx={{
-          backgroundColor: "#272643",
-          marginBottom: "10px",
-          marginTop: "10px",
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="back"
-            onClick={handleBack}
-          >
-            <ArrowBackIosNewIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit">
-            Транзакции
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <CustomAppBar text={'Transactions'} onClick={handleBack}/>
 
       <Grid
         container
@@ -92,7 +68,7 @@ const Transactions = () => {
 
         <Grid container direction="column">
           {process === "confirmed" ? (
-           transactions.reverse().map((transaction, index) => (
+            transactions.reverse().map((transaction, index) => (
               <Grid item key={index}>
                 <TransactionListItem transaction={transaction} />
               </Grid>
