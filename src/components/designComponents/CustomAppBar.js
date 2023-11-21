@@ -1,7 +1,33 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import React from 'react';
+import { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import useService from '../../services/requests';
+import { getUserData } from '../../store/actions/actions';
+
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 const CustomAppBar = ({onClick,text ,sx}) => {
+			const userData = useSelector(state => state.user.userData);
+			const dispatch = useDispatch();
+
+			const { GET_USER_DATA: getUser, setProcess, process } = useService();
+
+			useEffect(() => {
+				getMyData();
+				// eslint-disable-next-line
+			}, [userData.transaction]);
+
+			const getMyData = useCallback(() => {
+				getUser()
+					.then(data => {
+						dispatch(getUserData(data))
+					})
+					.then(() => {
+						setProcess('confirmed')
+					})
+			}, [])
+
     return (
         <AppBar
         position="static"

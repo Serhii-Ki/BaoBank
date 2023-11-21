@@ -32,7 +32,7 @@ function Deposit() {
   };
   return (
     <Container>
-      <CustomAppBar text={"Wallet"} onClick={handleBack} />
+      <CustomAppBar text={"Wallet"} onClick={handleBack} sx={{marginTop: '0px'}}/>
       <Box
         display="flex"
         justifyContent="center"

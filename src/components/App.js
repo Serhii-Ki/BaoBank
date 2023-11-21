@@ -7,6 +7,7 @@ import appStyle from "../scss/app.scss";
 import ErrorLayout from "./layout/ErrorLayout";
 import PrivateLayout from "./layout/PrivateLayout";
 import PublicLayout from "./layout/PublicLayout";
+import StandardLayout from "./layout/StandardLayout";
 
 //View
 import Transactions from "./pages/private/transactions/Transactions";
@@ -61,75 +62,82 @@ function App() {
       element: <DashBoard />,
       path: '/dashboard'
     },
-    {
-      element: <Profile />,
-      path: '/profile'
-    },
-    {
-      element: <GiveGifts />,
-      path: '/givegifts'
-    },
-    {
-      element: <Transactions />,
-      path: "/transaction"
-    },
-    {
-      element: <TransactionItem />,
-      path: "/transactions/transactionId"
-    },
-    {
-      element: <SendForm />,
-      path: "/transactions/sendform"
-    },
-    {
-      element: <UpAccount />,
-      path: '/transactions/upaccount'
-    },
-    {
-      element: <Notification />,
-      path: '/notification'
-    },
-    {
-      element: <QrCode />,
-      path: '/qrcode'
-    },
-    
-    {
-      element: <Deposit />,
-      path: '/deposit'
-    },
-    {
-      element: <OrderFood />,
-      path: '/fastfood'
-    },
-    {
-      element: <FoodItem />,
-      path: '/fastfood/:type/:id'
-    },
-
   ];
+
+  const StandardPages = [
+		{
+			element: <Profile />,
+			path: '/profile',
+		},
+		{
+			element: <GiveGifts />,
+			path: '/givegifts',
+		},
+		{
+			element: <Transactions />,
+			path: '/transaction',
+		},
+		{
+			element: <TransactionItem />,
+			path: '/transactions/transactionId',
+		},
+		{
+			element: <SendForm />,
+			path: '/transactions/sendform',
+		},
+		{
+			element: <UpAccount />,
+			path: '/transactions/upaccount',
+		},
+		{
+			element: <Notification />,
+			path: '/notification',
+		},
+		{
+			element: <QrCode />,
+			path: '/qrcode',
+		},
+
+		{
+			element: <Deposit />,
+			path: '/deposit',
+		},
+		{
+			element: <OrderFood />,
+			path: '/fastfood',
+		},
+		{
+			element: <FoodItem />,
+			path: '/fastfood/:type/:id',
+		},
+	]
 
 
 
   return (
-    <Router>
-      <Routes>
-        <Route element={<PrivateLayout />}>
-          {PrivatePages.map(page => (
-            <Route key={page.path} path={page.path} element={page.element} />
-          ))}
-        </Route>
-        <Route element={<PublicLayout />}>
-          {publicPages.map(page => (
-            <Route key={page.path} path={page.path} element={page.element} />
-          ))}
-        </Route>
-        <Route element={<ErrorLayout />}>
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
-    </Router>
-  );
+		<Router>
+			<Routes>
+				<Route element={<PrivateLayout />}>
+					{PrivatePages.map(page => (
+						<Route key={page.path} path={page.path} element={page.element} />
+					))}
+				</Route>
+				<Route element={<PublicLayout />}>
+					{publicPages.map(page => (
+						<Route key={page.path} path={page.path} element={page.element} />
+					))}
+				</Route>
+				<Route element={<StandardLayout />}>
+					{StandardPages.map(page => (
+						<Route key={page.path} path={page.path} element={page.element} />
+					))}
+				</Route>
+				<Route element={<ErrorLayout />}>
+					<Route path='*' element={<ErrorPage />} />
+				</Route>
+			</Routes>
+		</Router>
+	)
 }
 
 export default App;
