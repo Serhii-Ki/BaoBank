@@ -23,10 +23,10 @@ const TransactionListItem = ({ transaction }) => {
   useEffect(() => {
     if (transaction.userName) {
       setTransactionUserName(
-        transaction.userName.length < 10
-          ? transaction.userName
-          : transaction.userName.slice(0, 10) + "..."
-      );
+				transaction.userName.length < 12 && window.innerWidth > 576
+					? transaction.userName
+					: transaction.userName.slice(0, 12) + '...'
+			)
     }
   }, [transaction.userName]);
 

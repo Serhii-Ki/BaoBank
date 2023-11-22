@@ -69,11 +69,14 @@ const Transactions = () => {
 
 				<Grid container direction='column'>
 					{process === 'confirmed' ? (
-						transactions.reverse().map((transaction, index) => (
-							<Grid item key={index}>
-								<TransactionListItem transaction={transaction} />
-							</Grid>
-						))
+						transactions
+							.filter(transaction => transaction.trType !== 'request')
+							.reverse()
+							.map((transaction, index) => (
+								<Grid item key={index}>
+									<TransactionListItem transaction={transaction} />
+								</Grid>
+							))
 					) : (
 						<Spinner />
 					)}

@@ -7,7 +7,6 @@ import appStyle from "../scss/app.scss";
 import ErrorLayout from "./layout/ErrorLayout";
 import PrivateLayout from "./layout/PrivateLayout";
 import PublicLayout from "./layout/PublicLayout";
-import StandardLayout from "./layout/StandardLayout";
 
 //View
 import Transactions from "./pages/private/transactions/Transactions";
@@ -28,6 +27,7 @@ import Notification from "./pages/private/notification/Notification";
 import QrCode from "./pages/private/QrCode/QRCodePage";
 import OrderFood from "./pages/private/orderFood/OrderFood";
 import FoodItem from "./pages/private/orderFood/FoodItem";
+import RequestMoney from "./pages/private/requestMoney/RequestMoney";
 
 function App() {
   const publicPages = [
@@ -50,21 +50,14 @@ function App() {
     {
       element: <PhoneBook />,
       path: '/phonebook'
-    },
-    {
-      element: <Deposit />,
-      path: '/deposit'
     }
   ];
 
   const PrivatePages = [
-    {
-      element: <DashBoard />,
-      path: '/dashboard'
-    },
-  ];
-
-  const StandardPages = [
+		{
+			element: <DashBoard />,
+			path: '/dashboard',
+		},
 		{
 			element: <Profile />,
 			path: '/profile',
@@ -90,8 +83,8 @@ function App() {
 			path: '/transactions/upaccount',
 		},
 		{
-			element: <Notification />,
-			path: '/notification',
+			element: <RequestMoney />,
+			path: '/request',
 		},
 		{
 			element: <QrCode />,
@@ -110,9 +103,11 @@ function App() {
 			element: <FoodItem />,
 			path: '/fastfood/:type/:id',
 		},
+		{
+			element: <Deposit />,
+			path: '/deposit',
+		},
 	]
-
-
 
   return (
 		<Router>
@@ -124,11 +119,6 @@ function App() {
 				</Route>
 				<Route element={<PublicLayout />}>
 					{publicPages.map(page => (
-						<Route key={page.path} path={page.path} element={page.element} />
-					))}
-				</Route>
-				<Route element={<StandardLayout />}>
-					{StandardPages.map(page => (
 						<Route key={page.path} path={page.path} element={page.element} />
 					))}
 				</Route>

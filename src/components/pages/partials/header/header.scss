@@ -5,6 +5,11 @@
   padding: 15px 10px 30px 10px;
   background-color: #272643;
   color: white;
+  &__logo {
+    display: block;
+    height: 40px;
+    cursor: pointer;
+  }
   &__userdata {
     display: flex;
     align-items: center;
@@ -26,4 +31,19 @@
   &__icon {
     cursor: pointer;
   }
+}
+
+@media (min-width: 992px) {
+  .header {
+    padding: 20px 10px 35px 10px;
+     &__logo {
+      height: 60px;
+    }
+    &__userdata {
+      &-avatar {
+        width: 60px;
+        height: 60px;
+    }
+  }
+}
 }

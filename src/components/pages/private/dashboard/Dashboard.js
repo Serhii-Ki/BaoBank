@@ -32,70 +32,70 @@ const DashBoard = () => {
   };
 
   const listServices = [
-    {
-      element: <SyncAltOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Transaction",
-      link: "/transaction",
-    },
-    {
-      element: <PriceCheckOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Request money ",
-      link: "/reqtransfer",
-    },
-    {
-      element: <PeopleOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Profile",
-      link: "/profile",
-    },
-    {
-      element: <FastfoodOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Order food online",
-      link: "/fastfood",
-    },
-    {
-      element: <RedeemOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Give gifts",
-      link: "/gifts",
-    },
-    {
-      element: <BookOnlineOutlinedIcon sx={{ fontSize: "2rem" }} />,
-      text: "Pay bills",
-      link: "/paybills",
-    },
-    {
-      element: <ConfirmationNumberIcon sx={{ fontSize: "2rem" }} />,
-      text: "Buy movie tickets",
-      link: "/buy",
-    },
-    {
-      element: <MonetizationOnIcon sx={{ fontSize: "2rem" }} />,
-      text: "Consumer loans",
-      link: "/consumer",
-    },
-    {
-      element: <ElectricBoltIcon sx={{ fontSize: "2rem" }} />,
-      text: "Electricity payment",
-      link: null,
-      hidden: !isExpanded,
-    },
-    {
-      element: <WaterDropIcon sx={{ fontSize: "2rem" }} />,
-      text: "Water payment",
-      link: null,
-      hidden: !isExpanded,
-    },
-    {
-      element: <AirplanemodeActiveIcon sx={{ fontSize: "2rem" }} />,
-      text: "Airfare",
-      link: null,
-      hidden: !isExpanded,
-    },
-    {
-      element: <MoreHorizIcon sx={{ fontSize: "2rem" }} />,
-      text: "All Services",
-      link: null,
-    },
-  ].filter((item) => !item.hidden);
+		{
+			element: <SyncAltOutlinedIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Transaction',
+			link: '/transaction',
+		},
+		{
+			element: <PriceCheckOutlinedIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Request money ',
+			link: '/request',
+		},
+		{
+			element: <PeopleOutlinedIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Profile',
+			link: '/profile',
+		},
+		{
+			element: <FastfoodOutlinedIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Order food online',
+			link: '/fastfood',
+		},
+		{
+			element: <RedeemOutlinedIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Give gifts',
+			link: '/gifts',
+		},
+		{
+			element: <BookOnlineOutlinedIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Pay bills',
+			link: '/paybills',
+		},
+		{
+			element: <ConfirmationNumberIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Buy movie tickets',
+			link: '/buy',
+		},
+		{
+			element: <MonetizationOnIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Consumer loans',
+			link: '/consumer',
+		},
+		{
+			element: <ElectricBoltIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Electricity payment',
+			link: null,
+			hidden: !isExpanded,
+		},
+		{
+			element: <WaterDropIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Water payment',
+			link: null,
+			hidden: !isExpanded,
+		},
+		{
+			element: <AirplanemodeActiveIcon sx={{ fontSize: '2rem' }} />,
+			text: 'Airfare',
+			link: null,
+			hidden: !isExpanded,
+		},
+		{
+			element: <MoreHorizIcon sx={{ fontSize: '2rem' }} />,
+			text: 'All Services',
+			link: null,
+		},
+	].filter(item => !item.hidden)
 
   useEffect(() => {
     if (userData) setProcess('confirmed');
