@@ -35,14 +35,12 @@ function EnteringPassword() {
         registration(data)
             .then(data => {
                 navigate("/signin");
-                console.log(data);
             })
             .catch((error) => {
                 dispatch(goEmail());
                 dispatch(isCheckbox());
                 dispatch(notSuccessVerificationCode());
                 dispatch(userNotRegistration());
-                console.log(error);
             })
     }
 
