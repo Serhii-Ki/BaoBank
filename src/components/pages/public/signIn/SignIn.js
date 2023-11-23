@@ -39,13 +39,11 @@ function SignIn() {
         login(userData)
             .then(data => {
                 if (data.token) {
-                    console.log(data);
                     localStorage.setItem('jwt', data.token);
                     navigate('/dashboard')
                 }
             })
             .catch((error) => {
-                console.log(error);
                 dispatch(userNotSignin())
             })
             .finally(() => reset());

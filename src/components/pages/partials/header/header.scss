@@ -1,6 +1,6 @@
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   padding: 15px 10px 30px 10px;
   background-color: #272643;
@@ -9,11 +9,13 @@
     display: block;
     height: 40px;
     cursor: pointer;
+    justify-self: center;
+    margin-left: 10px;
   }
   &__userdata {
     display: flex;
     align-items: center;
-    column-gap: 20px;
+    column-gap: 10px;
     &-avatar {
       width: 40px;
       height: 40px;
@@ -25,8 +27,9 @@
     }
   }
   &__icons {
+    justify-self: end;
     display: flex;
-    column-gap: 20px;
+    column-gap: 10px;
   }
   &__icon {
     cursor: pointer;
@@ -44,6 +47,12 @@
         width: 60px;
         height: 60px;
     }
+  }
+  &__icons {
+    column-gap: 20px;
+  }
+   &__userdata {
+    column-gap: 20px;
   }
 }
 }
