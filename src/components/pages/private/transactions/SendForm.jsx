@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import useService from "../../../../services/requests";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from 'react-router-dom';
+
 import {
   getUsersData,
   sentTransaction,
 } from "../../../../store/actions/actions";
-import { useLocation } from "react-router-dom";
+
 import {
   Container,
   TextField,
   Button,
   Typography,
-
   Select,
   MenuItem,
   Avatar,

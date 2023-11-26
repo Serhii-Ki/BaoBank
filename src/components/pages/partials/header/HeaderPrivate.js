@@ -6,6 +6,7 @@ import useService from '../../../../services/requests';
 
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import PowerSettingsNewOutlinedIcon from "@mui/icons-material/PowerSettingsNewOutlined";
+import NotificationAddOutlinedIcon from '@mui/icons-material/NotificationAddOutlined'
 import logo from '../../../../assets/logo.png';
 
 import "./header.scss";
@@ -17,7 +18,7 @@ function HeaderPrivate() {
     const userData = useSelector(state => state.user.userData);
     const dispatch = useDispatch();
 
-    const { GET_USER_DATA: getUser, setProcess, process } = useService();
+    const { GET_USER_DATA: getUser, DELETE_NOTIFICATIONS, setProcess, process } = useService();
 
     useEffect(() => {
         getMyData();
@@ -34,6 +35,13 @@ function HeaderPrivate() {
             });
     };
 
+	const deleteNotification = () => {
+		if (userData.notifications?.length > 0) {
+			DELETE_NOTIFICATIONS()
+				.then(data => console.log(data))
+		}
+	}
+	console.log(userData);
     return (
 			<header className='header'>
 				<div className='header__userdata'>
@@ -56,12 +64,26 @@ function HeaderPrivate() {
 					alt='logo baobank'
 				/>
 				<div className='header__icons'>
-					<NotificationsNoneOutlinedIcon className='header__icon' />
+					{userData.notifications?.length > 0 ? (
+						<NotificationAddOutlinedIcon
+							className='header__icon'
+							onClick={() => {
+								navigate('/notification')
+							}}
+						/>
+					) : (
+						<NotificationsNoneOutlinedIcon
+							className='header__icon'
+							onClick={() => {
+								navigate('/notification')
+							}}
+						/>
+					)}
 					<PowerSettingsNewOutlinedIcon
 						className='header__icon'
 						onClick={() => {
 							localStorage.removeItem('jwt')
-							navigate('/');
+							navigate('/')
 						}}
 					/>
 				</div>
