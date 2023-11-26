@@ -104,8 +104,8 @@ function App() {
 			path: '/fastfood/:type/:id',
 		},
 		{
-			element: <Deposit />,
-			path: '/deposit',
+			element: <Notification />,
+			path: '/notification',
 		},
 	]
 

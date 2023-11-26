@@ -18,6 +18,7 @@ import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import BalanceDisplay from "./DashboardComponents/BalanceDisplay";
 import ModalWindow from "../../../designComponents/ModalWindow";
+import SliderDashboard from "./SliderDashboard";
 
 const DashBoard = () => {
   const userData = useSelector(state => state.user.userData);
@@ -110,110 +111,111 @@ const DashBoard = () => {
     setOpenModal(false);
   };
   return (
-    <>
-      <BalanceDisplay
-        process={process}
-        balance={userData.balance}
-        showBalance={showBalance}
-        toggleVisibility={toggleVisibility}
-      />
-      <Grid
-        container
-        spacing={2}
-        justifyContent="center"
-        style={{ padding: "16px" }}
-      >
-        {listServices.map((item, index) => (
-          <Grid
-            key={index}
-            item
-            xs={4}
-            sm={3}
-            md={2}
-            container
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Box
-              sx={{
-                width: "100%",
-                height: "120px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "12px",
-                borderRadius: "8px",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                backgroundColor: "#ffffff",
-              }}
-            >
-              {item.link === null ? (
-                <Link
-                  href={item.link}
-                  underline="none"
-                  sx={{
-                    justifyContent: "center",
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "#272643",
-                  }}
-                >
-                  {" "}
-                  <IconButton
-                    // onClick={() => setIsExpanded(!isExpanded)}
-                    onClick={openModalHandler}
-                    sx={{ color: "#272643", fontSize: "2rem" }}
-                    color="primary"
-                  >
-                    {item.element}
-                  </IconButton>
-                  <Typography variant="body2" align="center">
-                    {item.text}
-                  </Typography>
-                </Link>
-              ) : (
-                <Link
-                  href={item.link}
-                  underline="none"
-                  sx={{
-                    justifyContent: "center",
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "#272643",
-                  }}
-                >
-                  {" "}
-                  <IconButton
-                    sx={{ color: "#272643", fontSize: "2rem" }}
-                    color="primary"
-                  >
-                    {item.element}
-                  </IconButton>
-                  <Typography variant="body2" align="center">
-                    {item.text}
-                  </Typography>
-                </Link>
-              )}
-            </Box>
-          </Grid>
-        ))}
-        {openModal && (
-          <ModalWindow
-            open={openModal}
-            onClose={closeModalHandler}
-            secondText={'secondText'}
-            mainText={"mainText"}
-            firstBtnText={"Yes"}
-            secondBtnText={"No"}
-            firstBtnClick={closeModalHandler}
-            secondBtnClick={closeModalHandler}
-            title="Your Modal Title"
-          />
-        )}
-      </Grid>
-    </>
-  );
+		<>
+			<BalanceDisplay
+				process={process}
+				balance={userData.balance}
+				showBalance={showBalance}
+				toggleVisibility={toggleVisibility}
+			/>
+			<Grid
+				container
+				spacing={2}
+				justifyContent='center'
+				style={{ padding: '16px' }}
+			>
+				{listServices.map((item, index) => (
+					<Grid
+						key={index}
+						item
+						xs={4}
+						sm={3}
+						md={2}
+						container
+						direction='column'
+						alignItems='center'
+						justifyContent='center'
+					>
+						<Box
+							sx={{
+								width: '100%',
+								height: '120px',
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+								padding: '12px',
+								borderRadius: '8px',
+								boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+								backgroundColor: '#ffffff',
+							}}
+						>
+							{item.link === null ? (
+								<Link
+									href={item.link}
+									underline='none'
+									sx={{
+										justifyContent: 'center',
+										display: 'flex',
+										flexDirection: 'column',
+										color: '#272643',
+									}}
+								>
+									{' '}
+									<IconButton
+										// onClick={() => setIsExpanded(!isExpanded)}
+										onClick={openModalHandler}
+										sx={{ color: '#272643', fontSize: '2rem' }}
+										color='primary'
+									>
+										{item.element}
+									</IconButton>
+									<Typography variant='body2' align='center'>
+										{item.text}
+									</Typography>
+								</Link>
+							) : (
+								<Link
+									href={item.link}
+									underline='none'
+									sx={{
+										justifyContent: 'center',
+										display: 'flex',
+										flexDirection: 'column',
+										color: '#272643',
+									}}
+								>
+									{' '}
+									<IconButton
+										sx={{ color: '#272643', fontSize: '2rem' }}
+										color='primary'
+									>
+										{item.element}
+									</IconButton>
+									<Typography variant='body2' align='center'>
+										{item.text}
+									</Typography>
+								</Link>
+							)}
+						</Box>
+					</Grid>
+				))}
+				<SliderDashboard />
+				{openModal && (
+					<ModalWindow
+						open={openModal}
+						onClose={closeModalHandler}
+						secondText={'secondText'}
+						mainText={'mainText'}
+						firstBtnText={'Yes'}
+						secondBtnText={'No'}
+						firstBtnClick={closeModalHandler}
+						secondBtnClick={closeModalHandler}
+						title='Your Modal Title'
+					/>
+				)}
+			</Grid>
+		</>
+	)
 };
 
 export default DashBoard;

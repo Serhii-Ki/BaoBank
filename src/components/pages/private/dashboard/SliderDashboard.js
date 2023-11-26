@@ -38,7 +38,7 @@ function SliderDashboard() {
         <Carousel
             showArrows={false}
             autoPlay={true}
-            interval={5000}
+            interval={9000}
             showStatus={false}
             showIndicators={false}
             showThumbs={false}
@@ -52,17 +52,6 @@ function SliderDashboard() {
         </Carousel>
 
     )
-
-    // return (
-    //     <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-    //         <div className="carousel-inner">
-    //             <div className="slid" style={{ backgroundImage: `url(${first})` }}>SALES OFF 1014%</div>
-    //             <div className="slid" style={{ backgroundImage: `url(${first})` }}>SALES OFF 102323%</div>
-    //             <div className="slid" style={{ backgroundImage: `url(${first})` }}>SALES OFF 100%</div>
-    //             <div className="slid" style={{ backgroundImage: `url(${first})` }}>SALES OFF 1051%</div>
-    //         </div>
-    //     </div>
-    // )
 }
 
 export default SliderDashboard;
