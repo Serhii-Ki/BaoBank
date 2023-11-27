@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,37 +18,37 @@ import {
 	Typography,
 	Box,
 } from '@mui/material';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const Notification = () => {
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const userData = useSelector(state => state.user.userData);
-    const transactions = userData.transactions
+    const transactions = userData.transactions;
+
     const { process, setProcess } = useService();
+
     const [openModal, setOpenModal] = useState(false);
 
      useEffect(() => {
-        if (userData._id) setProcess('confirmed')
+        if (userData._id) {
+			setProcess('confirmed');
+		}
         // eslint-disable-next-line
 	}, [userData]);
 
-    const openModalHandler = () => {
-		setOpenModal(true)
+
+    const openModalHandler = (data) => {
+		setOpenModal(true);
 	};
 
     const closeModalHandler = () => {
-        setOpenModal(false)
+        setOpenModal(false);
     };
 
     console.log('My transaction',transactions);
   return (
 		<Container>
-			<CustomAppBar
-				text={'Transactions'}
-				onClick={() => navigate('/dashboard')}
-			/>
+			<CustomAppBar text={'Requests'} onClick={() => navigate('/dashboard')} />
 
 			<Grid
 				container
@@ -62,7 +62,13 @@ const Notification = () => {
 							.filter(transaction => transaction.trType === 'request')
 							.reverse()
 							.map((transaction, index) => (
-								<Grid item key={index}>
+								<Grid
+									item
+									key={index}
+									onClick={() => {
+										openModalHandler();
+									}}
+								>
 									<ListItem
 										sx={{
 											bgcolor: 'background.paper',
@@ -70,7 +76,6 @@ const Notification = () => {
 											borderRadius: '4px',
 										}}
 										button
-										onClick={() => {}}
 									>
 										<ListItemAvatar>
 											<Avatar
@@ -104,10 +109,7 @@ const Notification = () => {
 												variant='body1'
 												color={'white'}
 												sx={{
-													bgcolor:
-														transaction.trType === 'out'
-															? 'error.main'
-															: 'success.main',
+													bgcolor: 'orange',
 													borderRadius: '4px',
 													padding: '2px',
 
@@ -137,11 +139,11 @@ const Notification = () => {
 					firstBtnText={'Confirm'}
 					secondBtnText={'Cancel'}
 					firstBtnClick={() => {
-						closeModalHandler();
+						closeModalHandler()
 					}}
 					secondBtnClick={() => {
-                        closeModalHandler();
-                    }}
+						closeModalHandler()
+					}}
 					title='Your Modal Title'
 				/>
 			)}
