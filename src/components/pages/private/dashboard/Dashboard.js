@@ -199,7 +199,7 @@ const DashBoard = () => {
 						</Box>
 					</Grid>
 				))}
-				<SliderDashboard />
+				{/* <SliderDashboard /> */}
 				{openModal && (
 					<ModalWindow
 						open={openModal}

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getUserData } from "../../../../store/actions/actions";
+import { getUserData, sentTransaction } from '../../../../store/actions/actions'
 import useService from '../../../../services/requests';
 
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import PowerSettingsNewOutlinedIcon from "@mui/icons-material/PowerSettingsNewOutlined";
 import NotificationAddOutlinedIcon from '@mui/icons-material/NotificationAddOutlined'
-import logo from '../../../../assets/logo.png';
+import logo from '../../../../assets/logo1.png';
 
 import "./header.scss";
 
@@ -37,8 +37,7 @@ function HeaderPrivate() {
 
 	const deleteNotification = () => {
 		if (userData.notifications?.length > 0) {
-			DELETE_NOTIFICATIONS()
-				.then(data => console.log(data))
+			DELETE_NOTIFICATIONS().then(data => dispatch(sentTransaction()))
 		}
 	}
 	console.log(userData);
@@ -68,7 +67,8 @@ function HeaderPrivate() {
 						<NotificationAddOutlinedIcon
 							className='header__icon'
 							onClick={() => {
-								navigate('/notification')
+								navigate('/notification');
+								deleteNotification();
 							}}
 						/>
 					) : (

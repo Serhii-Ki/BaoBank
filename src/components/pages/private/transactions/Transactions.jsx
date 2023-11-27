@@ -70,7 +70,7 @@ const Transactions = () => {
 				<Grid container direction='column'>
 					{process === 'confirmed' ? (
 						transactions
-							.filter(transaction => transaction.trType !== 'request')
+							.filter(transaction => transaction.trType !== "request")
 							.reverse()
 							.map((transaction, index) => (
 								<Grid item key={index}>
