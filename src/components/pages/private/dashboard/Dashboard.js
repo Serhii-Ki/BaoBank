@@ -29,6 +29,7 @@ const DashBoard = () => {
   const [showBalance, setShowBalance] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const toggleVisibility = () => {
+	
     setShowBalance(!showBalance);
   };
 
@@ -199,7 +200,7 @@ const DashBoard = () => {
 						</Box>
 					</Grid>
 				))}
-				{/* <SliderDashboard /> */}
+				<SliderDashboard />
 				{openModal && (
 					<ModalWindow
 						open={openModal}

@@ -47,7 +47,7 @@ const RequestMoney = () => {
 		amount: '',
 		userName: '',
 		userAvatar: '',
-		trType: 'request'
+		trType: 'requestIn'
 	});
 	const wrongSymbols = ['e', 'E', '-', '+', '.', ',']
 	let navigate = useNavigate();

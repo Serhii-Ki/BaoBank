@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,8 +8,6 @@ import CustomAppBar from '../../../designComponents/CustomAppBar';
 import ModalWindow from '../../../designComponents/ModalWindow.js';
 
 import { Grid, Container } from '@mui/material';
-import { CircularProgress } from '@mui/material';
-import CustomBtn from '../../../designComponents/CustomBtn';
 import {
 	ListItem,
 	ListItemAvatar,
