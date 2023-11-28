@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useService from "../../../../services/requests";
 import { useState } from "react";
@@ -21,8 +20,7 @@ const customBtnStyles = {
   marginTop: "10px",
 };
 
-function Profile(props) {
-  const userData = useSelector((state) => state.user.userData);
+function Profile() {
   const { PUT_CHANGE_DATA: changeUserData } = useService();
 
   const navigate = useNavigate();

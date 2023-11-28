@@ -14,8 +14,6 @@ import SignIn from "./pages/public/signIn/SignIn";
 import SignUP from "./pages/public/signUp/SignUp";
 import Profile from "./pages/private/profile/Profile";
 import OnBoarding from "./pages/public/onBoarding/OnBoarding";
-import GiveGifts from "./pages/private/giveGifts/GiveGifts";
-import PhoneBook from "./pages/private/phoneBook/PhoneBook";
 import Deposit from "./pages/private/deposit/Deposit";
 import ErrorPage from "./pages/errors/ErrorPage";
 import Npay from "./pages/public/npay/Npay";
@@ -47,10 +45,6 @@ function App() {
       element: <Npay />,
       path: '/npay'
     },
-    {
-      element: <PhoneBook />,
-      path: '/phonebook'
-    }
   ];
 
   const PrivatePages = [
@@ -61,10 +55,6 @@ function App() {
 		{
 			element: <Profile />,
 			path: '/profile',
-		},
-		{
-			element: <GiveGifts />,
-			path: '/givegifts',
 		},
 		{
 			element: <Transactions />,
