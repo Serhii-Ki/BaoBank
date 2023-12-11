@@ -53,8 +53,8 @@ const TransactionItem = () => {
       <CustomAppBar text={"Детали транзакции"} onClick={handleBack} />
 
       <Box my={2}>
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item xs={12} md={6}>
+        <Grid container spacing={2} alignItems={'center'} justifyContent="center">
+          <Grid item xs={12}>
             <Paper elevation={1} sx={{ padding: 2 }}>
               <Grid
                 container

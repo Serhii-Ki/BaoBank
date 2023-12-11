@@ -52,7 +52,7 @@ function Profile(props) {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container >
       <CustomAppBar text={"Come back"} onClick={handleBack} />
       <form onSubmit={handleSubmit}>
         <TextField

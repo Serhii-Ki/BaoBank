@@ -19,7 +19,7 @@ const TransactionListItem = ({ transaction }) => {
 
   const tradingCode = transaction.tradingCode;
 
-  const [transactionUserName, setTransactionUserName] = useState('');
+  const [transactionUserName, setTransactionUserName] = useState("");
   useEffect(() => {
     if (transaction.userName) {
       setTransactionUserName(
@@ -62,22 +62,28 @@ const TransactionListItem = ({ transaction }) => {
       <Box sx={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
         <Typography
           variant="body1"
-
-      
-
-          color={'white'}
+          color={"white"}
           sx={{
-            bgcolor: transaction.trType === "out" ? "error.main" : "success.main",
-            borderRadius:'4px',
-            padding:'2px',
+            bgcolor:
+              transaction.trType === "out" ? "error.main" : "success.main",
+            borderRadius: "4px",
+            padding: "2px",
 
             mr: 1,
           }}
         >
           {" "}
           {transaction.trType === "out"
-            ? `$ ${transaction.amount}`
-            : `$ ${transaction.amount}`}
+            ? `$${
+                transaction.amount.toString().length > 5
+                  ? transaction.amount.toString().substring(0, 5) + ".."
+                  : transaction.amount
+              }`
+            : `$${
+                transaction.amount.toString().length > 5
+                  ? transaction.amount.toString().substring(0, 5) + ".."
+                  : transaction.amount
+              }`}
         </Typography>
         {transaction.trType !== "out" ? (
           <ArrowDownwardIcon sx={{ color: "#272643" }} />
