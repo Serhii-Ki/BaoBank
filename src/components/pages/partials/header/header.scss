@@ -1,14 +1,21 @@
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   padding: 15px 10px 30px 10px;
   background-color: #272643;
   color: white;
+  &__logo {
+    display: block;
+    height: 25px;
+    cursor: pointer;
+    justify-self: center;
+    margin-left: 10px;
+  }
   &__userdata {
     display: flex;
     align-items: center;
-    column-gap: 20px;
+    column-gap: 10px;
     &-avatar {
       width: 40px;
       height: 40px;
@@ -20,10 +27,32 @@
     }
   }
   &__icons {
+    justify-self: end;
     display: flex;
-    column-gap: 20px;
+    column-gap: 10px;
   }
   &__icon {
     cursor: pointer;
   }
+}
+
+@media (min-width: 992px) {
+  .header {
+    padding: 20px 10px 35px 10px;
+     &__logo {
+      height: 40px;
+    }
+    &__userdata {
+      &-avatar {
+        width: 60px;
+        height: 60px;
+    }
+  }
+  &__icons {
+    column-gap: 20px;
+  }
+   &__userdata {
+    column-gap: 20px;
+  }
+}
 }

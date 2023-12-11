@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { userNotSignin } from "../../../../store/actions/actions";
@@ -39,13 +39,11 @@ function SignIn() {
         login(userData)
             .then(data => {
                 if (data.token) {
-                    console.log(data);
                     localStorage.setItem('jwt', data.token);
                     navigate('/dashboard')
                 }
             })
             .catch((error) => {
-                console.log(error);
                 dispatch(userNotSignin())
             })
             .finally(() => reset());

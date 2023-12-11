@@ -17,22 +17,22 @@ function Deposit() {
   const { avatar, username, balance, transactions } = userData;
  
   const transactionItems =
-    transactions && transactions.length ? (
-      transactions
-        .slice(-3)
-        .reverse()
-        .map((transaction) => (
-          <TransactionListItem key={transaction.id} transaction={transaction} />
-        ))
-    ) : (
-      <Typography>Транзакций нет</Typography>
-    );
+		transactions && transactions.length ? (
+			transactions
+				.slice(-3)
+				.reverse()
+				.map((transaction, index) => (
+					<TransactionListItem key={index} transaction={transaction} />
+				))
+		) : (
+			<Typography>Транзакций нет</Typography>
+		)
   const handleBack = () => {
     navigate(-1);
   };
   return (
     <Container>
-      <CustomAppBar text={"Wallet"} onClick={handleBack} sx={{marginTop: '0px'}}/>
+      <CustomAppBar text={"Wallet"} onClick={handleBack}/>
       <Box
         display="flex"
         justifyContent="center"

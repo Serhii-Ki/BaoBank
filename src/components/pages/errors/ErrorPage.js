@@ -1,9 +1,11 @@
+import errorGif from '../../../assets/error.gif';
+
 import "./errorPage.scss";
 
 function ErrorPage() {
     return (
         <div>
-            <h1>Error!</h1>
+            <img className='error__page' src={errorGif}/>
         </div>
     );
 }

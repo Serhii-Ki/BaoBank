@@ -7,7 +7,6 @@ import appStyle from "../scss/app.scss";
 import ErrorLayout from "./layout/ErrorLayout";
 import PrivateLayout from "./layout/PrivateLayout";
 import PublicLayout from "./layout/PublicLayout";
-import StandardLayout from "./layout/StandardLayout";
 
 //View
 import Transactions from "./pages/private/transactions/Transactions";
@@ -15,8 +14,6 @@ import SignIn from "./pages/public/signIn/SignIn";
 import SignUP from "./pages/public/signUp/SignUp";
 import Profile from "./pages/private/profile/Profile";
 import OnBoarding from "./pages/public/onBoarding/OnBoarding";
-import GiveGifts from "./pages/private/giveGifts/GiveGifts";
-import PhoneBook from "./pages/private/phoneBook/PhoneBook";
 import Deposit from "./pages/private/deposit/Deposit";
 import ErrorPage from "./pages/errors/ErrorPage";
 import Npay from "./pages/public/npay/Npay";
@@ -28,6 +25,7 @@ import Notification from "./pages/private/notification/Notification";
 import QrCode from "./pages/private/QrCode/QRCodePage";
 import OrderFood from "./pages/private/orderFood/OrderFood";
 import FoodItem from "./pages/private/orderFood/FoodItem";
+import RequestMoney from "./pages/private/requestMoney/RequestMoney";
 
 function App() {
   const publicPages = [
@@ -47,31 +45,16 @@ function App() {
       element: <Npay />,
       path: '/npay'
     },
-    {
-      element: <PhoneBook />,
-      path: '/phonebook'
-    },
-    {
-      element: <Deposit />,
-      path: '/deposit'
-    }
   ];
 
   const PrivatePages = [
-    {
-      element: <DashBoard />,
-      path: '/dashboard'
-    },
-  ];
-
-  const StandardPages = [
+		{
+			element: <DashBoard />,
+			path: '/dashboard',
+		},
 		{
 			element: <Profile />,
 			path: '/profile',
-		},
-		{
-			element: <GiveGifts />,
-			path: '/givegifts',
 		},
 		{
 			element: <Transactions />,
@@ -90,8 +73,8 @@ function App() {
 			path: '/transactions/upaccount',
 		},
 		{
-			element: <Notification />,
-			path: '/notification',
+			element: <RequestMoney />,
+			path: '/request',
 		},
 		{
 			element: <QrCode />,
@@ -110,9 +93,11 @@ function App() {
 			element: <FoodItem />,
 			path: '/fastfood/:type/:id',
 		},
+		{
+			element: <Notification />,
+			path: '/notification',
+		},
 	]
-
-
 
   return (
 		<Router>
@@ -124,11 +109,6 @@ function App() {
 				</Route>
 				<Route element={<PublicLayout />}>
 					{publicPages.map(page => (
-						<Route key={page.path} path={page.path} element={page.element} />
-					))}
-				</Route>
-				<Route element={<StandardLayout />}>
-					{StandardPages.map(page => (
 						<Route key={page.path} path={page.path} element={page.element} />
 					))}
 				</Route>
