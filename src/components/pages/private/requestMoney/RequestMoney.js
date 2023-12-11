@@ -135,7 +135,7 @@ const RequestMoney = () => {
 			<form onSubmit={handleSubmit}>
 				<TextField
 					fullWidth
-					label='Сумма перевода'
+					label='Сумма запроса'
 					variant='outlined'
 					margin='normal'
 					name='amount'

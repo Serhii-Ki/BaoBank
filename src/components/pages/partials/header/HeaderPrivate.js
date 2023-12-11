@@ -18,7 +18,7 @@ function HeaderPrivate() {
     const userData = useSelector(state => state.user.userData);
     const dispatch = useDispatch();
 
-    const { GET_USER_DATA: getUser, DELETE_NOTIFICATIONS, setProcess, process } = useService();
+    const { GET_USER_DATA: getUser, DELETE_NOTIFICATIONS, setProcess } = useService();
 
     useEffect(() => {
         getMyData();
@@ -40,7 +40,7 @@ function HeaderPrivate() {
 			DELETE_NOTIFICATIONS().then(data => dispatch(sentTransaction()))
 		}
 	}
-	console.log(userData);
+	
     return (
 			<header className='header'>
 				<div className='header__userdata'>
