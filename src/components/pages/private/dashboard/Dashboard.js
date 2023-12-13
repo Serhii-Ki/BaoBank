@@ -133,6 +133,7 @@ const DashBoard = () => {
             md={2}
             container
             direction="column"
+            sx={{p:{sm:'1' , md:"3"}}}
             alignItems="center"
             justifyContent="center"
           >

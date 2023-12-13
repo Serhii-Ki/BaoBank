@@ -11,7 +11,7 @@ function Footer() {
             <a className="footer__link" href="!#"><img className="footer__img footer__img-active" src={pay} alt="pay" /></a>
             <a href="!#"><img className="footer__img" src={clockArrow} alt="pay" /></a>
             <a href="!#"><img className="footer__img" src={medal} alt="pay" /></a>
-            <a href="!#"><img className="footer__img" src={wallet} alt="pay" /></a>
+            <a href="/deposit"><img className="footer__img" src={wallet} alt="pay" /></a>
         </footer>
     );
 }
