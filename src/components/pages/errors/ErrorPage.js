@@ -1,10 +1,14 @@
 import errorGif from '../../../assets/error.gif';
-
+import { useNavigate } from "react-router-dom";
 import "./errorPage.scss";
 
 function ErrorPage() {
+    let navigate = useNavigate();
+    const handleBack = () => {
+        navigate(-1);
+      };
     return (
-        <div>
+        <div onClick={handleBack}>
             <img className='error__page' src={errorGif}/>
         </div>
     );

@@ -88,6 +88,7 @@ const TransactionItem = () => {
                     variant="h6"
                     sx={{ my: 2, textAlign: "center", color: "green" }}
                   >
+                    
                     ${transactionData.amount}
                   </Typography>
                 </Grid>

@@ -22,7 +22,14 @@ const TransactionListItem = ({ transaction }) => {
   const handleClick = () => {
     navigate(`/transactions/transactionId?tradingCode=${tradingCode}`);
   };
+  function formatAmount(amount) {
+    if (amount.length > 5) {
+        return amount.substring(0, 4) + "...";
+    }
+    return amount;
+}
 
+const formattedAmount = formatAmount(transaction.amount.toString());
   return (
 		<ListItem
 			sx={{ bgcolor: 'background.paper', my: 1, borderRadius: '4px' }}
@@ -65,8 +72,8 @@ const TransactionListItem = ({ transaction }) => {
 				>
 					{' '}
 					{transaction.trType === 'out'
-						? `$ ${transaction.amount}`
-						: `$ ${transaction.amount}`}
+						? `$ ${formattedAmount}`
+						: `$ ${formattedAmount}`}
 				</Typography>
 				{transaction.trType !== 'out' ? (
 					<ArrowDownwardIcon sx={{ color: '#272643' }} />
